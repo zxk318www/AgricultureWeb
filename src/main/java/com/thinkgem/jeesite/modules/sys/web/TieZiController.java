@@ -173,6 +173,12 @@ public class TieZiController  extends BaseController {
                                     }
 
                                 }
+                                //会员显示
+                                if (user.getState()==1){
+                                    msg1.setHy("1");
+                                }else{
+                                    msg1.setHy("0");
+                                }
                             }
                             //加载图片修改
                             if(StringUtils.isNoneBlank(msg1.getMsg())){

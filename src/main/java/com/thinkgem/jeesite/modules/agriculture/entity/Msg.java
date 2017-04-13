@@ -24,6 +24,8 @@ public class Msg extends BaseEntity implements Serializable {
 	 */
 	private String uid;
 
+	private String hy;
+
 	/**
 	 * 回复帖子的楼层
 	 */
@@ -238,6 +240,14 @@ public class Msg extends BaseEntity implements Serializable {
 
 	public void setNoteName(String noteName) {
 		this.noteName = noteName;
+	}
+
+	public String getHy() {
+		return hy;
+	}
+
+	public void setHy(String hy) {
+		this.hy = hy;
 	}
 
 	@Override

@@ -155,8 +155,9 @@
                                 <td style="border-right:1px solid slategrey ;width: 5%">
                                     <div style="width: 100px;height: auto" >
                                     ${msg.msgphoto}<br>
-                                    用户:<br>
-                                    ${msg.uname}
+                                        <c:if test="${msg.hy eq 1}"><span style="color: red">会员用户: </span><br></c:if>
+                                        <c:if test="${msg.hy eq 0}">用户:<br></c:if>
+                                        <span style="margin-left: 10px">${msg.uname}</span>
 
                                 </div></td>
                                 <td style="width: 95%;background: ghostwhite" id="txta" ><div class="send" style="margin-left: 10px" >${msg.msg}</div></td>
@@ -178,7 +179,7 @@
                     </ul><br>
 
                 </div>
-                <p style="margin-left: 38%;margin-bottom: 50px">--每页显示 ${pageSize}条--共${totalgoods}条商品信息-- </p>
+                <p style="margin-left: 38%;margin-bottom: 50px">--每页显示 ${pageSize}条--共${totalgoods}条回复信息-- </p>
             </div>
 
                     <div id="text" style="margin-top: 10px;">
