@@ -1,0 +1,1 @@
+var DTPath = "http://www.zlf168.com/";var SKPath = "http://www.zlf168.com/skin/default/";var MEPath = "http://www.zlf168.com/member/";var EXPath = "http://www.zlf168.com/extend/";var CKDomain = "";var CKPath = "/";var CKPrex = "cdn_";

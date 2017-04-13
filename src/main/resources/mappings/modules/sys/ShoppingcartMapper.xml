@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.ShoppingcartMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Shoppingcart">
+        SELECT
+            t.id AS id, 
+            t.UInfoid AS uinfoid, 
+            t.state AS state,
+            t.type AS type,
+            t.AddCarDate AS addcardate, 
+            t.num AS num, 
+            t.Goodsid AS goodsid,
+            t.GoodsTitle AS goodstitle,
+            t.del_flag AS del_flag
+        FROM
+            shoppingcart t
+        WHERE
+            t.id = #{id}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findByuid" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Shoppingcart">
+        SELECT
+        t.id AS id,
+        t.UInfoid AS uinfoid,
+        t.state AS state,
+        t.type AS type,
+        t.AddCarDate AS addcardate,
+        t.num AS num,
+        t.Goodsid AS goodsid,
+        t.GoodsTitle AS goodstitle,
+        t.del_flag AS del_flag
+        FROM
+        shoppingcart t
+        WHERE
+        t.UInfoid = #{uid}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findMaxById"  resultType="int">
+       SELECT
+        count(id)
+        FROM
+         shoppingcart t
+    </select>
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Shoppingcart">
+        SELECT
+            t.id AS id, 
+            t.UInfoid AS uinfoid, 
+            t.state AS state,
+            t.type AS type,
+            t.AddCarDate AS addcardate, 
+            t.num AS num, 
+            t.Goodsid AS goodsid,
+            t.GoodsTitle AS goodstitle,
+            t.del_flag AS del_flag
+        FROM
+            shoppingcart t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+        AND t.id = #{id}
+            </if>
+            <if test="uinfoid != null">
+        AND t.UInfoid = #{uinfoid}
+            </if>
+            <if test="state != null">
+        AND t.state = #{state}
+            </if>
+            <if test="type != null">
+        AND t.type = #{type}
+            </if>
+            <if test="addcardate != null">
+        AND t.AddCarDate = #{addcardate}
+            </if>
+            <if test="num != null">
+        AND t.num = #{num}
+            </if>
+            <if test="goodsid != null">
+        AND t.Goodsid = #{goodsid}
+            </if>
+            <if test="goodstitle != null">
+        AND t.GoodsTitle LIKE #{goodstitle}
+            </if>
+            <if test="del_flag != null">
+        AND t.del_flag = #{del_flag}
+            </if>
+        </where>
+
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY t.AddCarDate desc
+            </otherwise>
+        </choose>
+
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            shoppingcart
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Shoppingcart">
+        DELETE FROM
+            shoppingcart
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="uinfoid != null">
+        AND UInfoid = #{uinfoid}
+            </if>
+            <if test="state != null">
+        AND state = #{state}
+            </if>
+            <if test="type != null">
+        AND type = #{type}
+            </if>
+            <if test="addcardate != null">
+        AND AddCarDate = #{addcardate}
+            </if>
+            <if test="num != null">
+        AND num = #{num}
+            </if>
+            <if test="goodsid != null">
+        AND Goodsid = #{goodsid}
+            </if>
+            <if test="goodstitle != null">
+        AND GoodsTitle = #{goodstitle}
+            </if>
+            <if test="del_flag != null">
+        AND del_flag = #{del_flag}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Shoppingcart">
+        INSERT INTO
+            shoppingcart
+        (
+            id, 
+            UInfoid, 
+            state,
+            type,
+            AddCarDate, 
+            num, 
+            Goodsid,
+            GoodsTitle,
+            del_flag
+        )
+        VALUES 
+        (
+            #{id}, 
+            #{uinfoid}, 
+            #{state},
+            #{type},
+            #{addcardate}, 
+            #{num}, 
+            #{goodsid},
+            #{goodstitle},
+            #{del_flag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Shoppingcart">
+        UPDATE 
+            shoppingcart
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="uinfoid != null">
+            UInfoid = #{uinfoid},
+            </if>
+            <if test="state != null">
+            state = #{state},
+            </if>
+            <if test="type != null">
+            type = #{type},
+            </if>
+            <if test="addcardate != null">
+            AddCarDate = #{addcardate},
+            </if>
+            <if test="num != null">
+            num = #{num},
+            </if>
+            <if test="goodsid != null">
+            Goodsid = #{goodsid},
+            </if>
+            <if test="goodstitle != null">
+            GoodsTitle = #{goodstitle},
+            </if>
+            <if test="del_flag != null">
+            del_flag = #{del_flag}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Shoppingcart">
+        UPDATE 
+            shoppingcart
+        <set>
+            id = #{id},
+            UInfoid = #{uinfoid},
+            state = #{state},
+            type = #{type},
+            AddCarDate = #{addcardate},
+            num = #{num},
+            Goodsid = #{goodsid},
+            GoodsTitle = #{goodstitle},
+            del_flag = #{del_flag}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>

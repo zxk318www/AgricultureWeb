@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.SysnoticeMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        SELECT
+            t.id AS id, 
+            t.ToUid AS touid, 
+            t.FromUid AS fromuid, 
+            t.qtid AS qtid, 
+            t.title AS title, 
+            t.content AS content, 
+            t.postdate AS postdate
+        FROM
+            sysnotice t
+        WHERE
+            t.id = #{id}
+        AND t.del_flag = '0'
+    </select>
+
+
+    <select id="findByQtid" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        SELECT
+        t.id AS id,
+        t.ToUid AS touid,
+        t.FromUid AS fromuid,
+        t.qtid AS qtid,
+        t.title AS title,
+        t.content AS content,
+        t.postdate AS postdate
+        FROM
+        sysnotice t
+        WHERE
+        t.qtid = #{qtid}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findLastOne"  resultType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        SELECT
+        t.id AS id,
+        t.ToUid AS touid,
+        t.FromUid AS fromuid,
+        t.qtid AS qtid,
+        t.title AS title,
+        t.content AS content,
+        t.postdate AS postdate
+        from
+        (SELECT
+            *
+             FROM
+        sysnotice t
+        WHERE
+         t.del_flag = '0' and t.ToUid = 'all' ORDER BY t.postdate desc) t
+        LIMIT 1
+    </select>
+
+    <select id="findLastList" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        SELECT
+        t.id AS id,
+        t.ToUid AS touid,
+        t.FromUid AS fromuid,
+        t.qtid AS qtid,
+        t.title AS title,
+        t.content AS content,
+        t.postdate AS postdate
+        from
+        (SELECT
+            *
+             FROM
+        sysnotice t
+        WHERE
+         t.del_flag = '0' and t.ToUid = 'all' ORDER BY t.postdate desc) t
+        LIMIT 5
+
+
+    </select>
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        SELECT
+            t.id AS id, 
+            t.ToUid AS touid, 
+            t.FromUid AS fromuid, 
+            t.qtid AS qtid, 
+            t.title AS title, 
+            t.content AS content, 
+            t.postdate AS postdate
+        FROM
+            sysnotice t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+        AND t.id = #{id}
+            </if>
+            <if test="touid != null">
+        AND t.ToUid = #{touid}
+            </if>
+            <if test="fromuid != null">
+        OR  t.FromUid = #{fromuid} OR  t.ToUid='all'
+            </if>
+            <if test="qtid != null">
+        AND t.qtid = #{qtid}
+            </if>
+            <if test="title != null">
+        AND t.title = #{title}
+            </if>
+            <if test="content != null">
+        AND t.content = #{content}
+            </if>
+            <if test="postdate != null">
+        AND t.postdate = #{postdate}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY t.postdate desc
+            </otherwise>
+        </choose>
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            sysnotice
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        DELETE FROM
+            sysnotice
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="touid != null">
+        AND ToUid = #{touid}
+            </if>
+            <if test="fromuid != null">
+        AND FromUid = #{fromuid}
+            </if>
+            <if test="qtid != null">
+        AND qtid = #{qtid}
+            </if>
+            <if test="title != null">
+        AND title = #{title}
+            </if>
+            <if test="content != null">
+        AND content = #{content}
+            </if>
+            <if test="postdate != null">
+        AND postdate = #{postdate}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        INSERT INTO
+            sysnotice
+        (
+            id, 
+            ToUid, 
+            FromUid, 
+            qtid, 
+            title, 
+            content, 
+            postdate,
+            del_flag
+        )
+        VALUES 
+        (
+            #{id}, 
+            #{touid}, 
+            #{fromuid}, 
+            #{qtid}, 
+            #{title}, 
+            #{content}, 
+            #{postdate},
+            #{del_flag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        UPDATE 
+            sysnotice
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="touid != null">
+            ToUid = #{touid},
+            </if>
+            <if test="fromuid != null">
+            FromUid = #{fromuid},
+            </if>
+            <if test="qtid != null">
+            qtid = #{qtid},
+            </if>
+            <if test="title != null">
+            title = #{title},
+            </if>
+            <if test="content != null">
+            content = #{content},
+            </if>
+            <if test="postdate != null">
+            postdate = #{postdate},
+            </if>
+            <if test="del_flag != null">
+            del_flag = #{del_flag}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Sysnotice">
+        UPDATE 
+            sysnotice
+        <set>
+            id = #{id},
+            ToUid = #{touid},
+            FromUid = #{fromuid},
+            qtid = #{qtid},
+            title = #{title},
+            content = #{content},
+            postdate = #{postdate}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>

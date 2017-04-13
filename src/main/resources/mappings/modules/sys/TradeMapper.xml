@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.TradeMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Trade">
+        SELECT
+            t.id AS id, 
+            t.FromUInfoid AS fromuinfoid, 
+            t.ToUInfoid AS touinfoid, 
+            t.TradeDate AS tradedate, 
+            t.state AS state, 
+            t.Goodsid AS goodsid
+        FROM
+            trade t
+        WHERE
+            t.id = #{id}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Trade">
+        SELECT
+            t.id AS id, 
+            t.FromUInfoid AS fromuinfoid, 
+            t.ToUInfoid AS touinfoid, 
+            t.TradeDate AS tradedate, 
+            t.state AS state, 
+            t.Goodsid AS goodsid
+        FROM
+            trade t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+        AND t.id = #{id}
+            </if>
+            <if test="fromuinfoid != null">
+        AND t.FromUInfoid = #{fromuinfoid}
+            </if>
+            <if test="touinfoid != null">
+        AND t.ToUInfoid = #{touinfoid}
+            </if>
+            <if test="tradedate != null">
+        AND t.TradeDate = #{tradedate}
+            </if>
+            <if test="state != null">
+        AND t.state = #{state}
+            </if>
+            <if test="goodsid != null">
+        AND t.Goodsid = #{goodsid}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            trade
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Trade">
+        DELETE FROM
+            trade
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="fromuinfoid != null">
+        AND FromUInfoid = #{fromuinfoid}
+            </if>
+            <if test="touinfoid != null">
+        AND ToUInfoid = #{touinfoid}
+            </if>
+            <if test="tradedate != null">
+        AND TradeDate = #{tradedate}
+            </if>
+            <if test="state != null">
+        AND state = #{state}
+            </if>
+            <if test="goodsid != null">
+        AND Goodsid = #{goodsid}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Trade">
+        INSERT INTO
+            trade
+        (
+            id, 
+            FromUInfoid, 
+            ToUInfoid, 
+            TradeDate, 
+            state, 
+            Goodsid
+        )
+        VALUES 
+        (
+            #{id}, 
+            #{fromuinfoid}, 
+            #{touinfoid}, 
+            #{tradedate}, 
+            #{state}, 
+            #{goodsid}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Trade">
+        UPDATE 
+            trade
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="fromuinfoid != null">
+            FromUInfoid = #{fromuinfoid},
+            </if>
+            <if test="touinfoid != null">
+            ToUInfoid = #{touinfoid},
+            </if>
+            <if test="tradedate != null">
+            TradeDate = #{tradedate},
+            </if>
+            <if test="state != null">
+            state = #{state},
+            </if>
+            <if test="goodsid != null">
+            Goodsid = #{goodsid}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Trade">
+        UPDATE 
+            trade
+        <set>
+            id = #{id},
+            FromUInfoid = #{fromuinfoid},
+            ToUInfoid = #{touinfoid},
+            TradeDate = #{tradedate},
+            state = #{state},
+            Goodsid = #{goodsid}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>

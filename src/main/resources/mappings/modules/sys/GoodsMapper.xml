@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.GoodsMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        SELECT
+            t.id AS id, 
+            t.UInfoid AS uinfoid, 
+            t.name AS name, 
+            t.price AS price,
+            t.photo AS photo,
+            t.type AS type,
+            t.address AS address, 
+            t.state AS state,
+            t.postdate AS postdate,
+            t.miaoshu AS miaoshu,
+            t.num AS num,
+            t.del_flag AS del_flag
+        FROM
+            goods t
+        WHERE
+            t.id = #{id}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findLastGoods" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        SELECT
+            t.id AS id,
+            t.UInfoid AS uinfoid,
+            t.name AS name,
+            t.price AS price,
+            t.photo AS photo,
+            t.type AS type,
+            t.address AS address,
+            t.state AS state,
+            t.postdate AS postdate,
+            t.miaoshu AS miaoshu,
+            t.num AS num,
+            t.del_flag AS del_flag
+        from
+        (SELECT
+            *
+             FROM
+        goods t
+
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+                AND t.id LIKE #{id}
+            </if>
+            <if test="uinfoid != null">
+                AND t.UInfoid = #{uinfoid}
+            </if>
+            <if test="name != null">
+                AND t.name like #{name}
+            </if>
+            <if test="price != null">
+                AND t.price = #{price}
+            </if>
+            <if test="photo != null">
+                AND t.photo = #{photo}
+            </if>
+            <if test="type != null">
+                AND t.type = #{type}
+            </if>
+            <if test="address != null">
+                AND t.address = #{address}
+            </if>
+            <if test="state != null">
+                AND t.state = #{state}
+            </if>
+            <if test="postdate != null">
+                AND t.postdate = #{postdate}
+            </if>
+            <if test="miaoshu != null">
+                AND t.miaoshu = #{miaoshu}
+            </if>
+            <if test="num != null">
+                AND t.num = #{num}
+            </if>
+        </where>
+         ORDER BY t.postdate desc) t
+        LIMIT 4
+    </select>
+
+    <select id="findByuid" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        SELECT
+        t.id AS id,
+        t.UInfoid AS uinfoid,
+        t.name AS name,
+        t.price AS price,
+        t.photo AS photo,
+        t.type AS type,
+        t.address AS address,
+        t.state AS state,
+        t.postdate AS postdate,
+        t.miaoshu AS miaoshu,
+        t.num AS num,
+        t.del_flag AS del_flag
+        FROM
+        goods t
+        WHERE
+        t.UInfoid = #{uid}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findDeleteOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        SELECT
+        t.id AS id,
+        t.UInfoid AS uinfoid,
+        t.name AS name,
+        t.price AS price,
+        t.photo AS photo,
+        t.type AS type,
+        t.address AS address,
+        t.state AS state,
+        t.postdate AS postdate,
+        t.miaoshu AS miaoshu,
+        t.num AS num,
+        t.del_flag AS del_flag
+        FROM
+        goods t
+        WHERE
+        t.id = #{id}
+        AND t.del_flag = '1'
+    </select>
+
+    <select id="findByTitle" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        SELECT
+        t.id AS id,
+        t.UInfoid AS uinfoid,
+        t.name AS name,
+        t.price AS price,
+        t.photo AS photo,
+        t.type AS type,
+        t.address AS address,
+        t.state AS state,
+        t.postdate AS postdate,
+        t.miaoshu AS miaoshu,
+        t.num AS num,
+        t.del_flag AS del_flag
+        FROM
+        goods t
+        WHERE
+        t.name = #{name}
+        AND t.del_flag = '0'
+    </select>
+
+
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        SELECT
+            t.id AS id, 
+            t.UInfoid AS uinfoid, 
+            t.name AS name, 
+            t.price AS price,
+            t.photo AS photo,
+            t.type AS type,
+            t.address AS address, 
+            t.state AS state,
+            t.postdate AS postdate,
+            t.miaoshu AS miaoshu,
+            t.num AS num,
+            t.del_flag AS del_flag
+        FROM
+            goods t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+        AND t.id LIKE #{id}
+            </if>
+            <if test="uinfoid != null">
+        AND t.UInfoid = #{uinfoid}
+            </if>
+            <if test="name != null">
+        AND t.name like #{name}
+            </if>
+            <if test="price != null">
+        AND t.price = #{price}
+            </if>
+            <if test="photo != null">
+        AND t.photo = #{photo}
+            </if>
+            <if test="type != null">
+        AND t.type = #{type}
+            </if>
+            <if test="address != null">
+        AND t.address = #{address}
+            </if>
+            <if test="state != null">
+        AND t.state = #{state}
+            </if>
+            <if test="postdate != null">
+        AND t.postdate = #{postdate}
+            </if>
+            <if test="miaoshu != null">
+        AND t.miaoshu = #{miaoshu}
+            </if>
+            <if test="num != null">
+        AND t.num = #{num}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY  t.postdate desc
+            </otherwise>
+        </choose>
+
+    </select>
+
+    <select id="findDelete" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        SELECT
+        t.id AS id,
+        t.UInfoid AS uinfoid,
+        t.name AS name,
+        t.price AS price,
+        t.photo AS photo,
+        t.type AS type,
+        t.address AS address,
+        t.state AS state,
+        t.postdate AS postdate,
+        t.miaoshu AS miaoshu,
+        t.num AS num,
+        t.del_flag AS del_flag
+        FROM
+        goods t
+        <where>
+            t.del_flag = '1'
+            <if test="id != null">
+                AND t.id LIKE #{id}
+            </if>
+            <if test="uinfoid != null">
+                AND t.UInfoid = #{uinfoid}
+            </if>
+            <if test="name != null">
+                AND t.name like #{name}
+            </if>
+            <if test="price != null">
+                AND t.price = #{price}
+            </if>
+            <if test="photo != null">
+                AND t.photo = #{photo}
+            </if>
+            <if test="type != null">
+                AND t.type = #{type}
+            </if>
+            <if test="address != null">
+                AND t.address = #{address}
+            </if>
+            <if test="state != null">
+                AND t.state = #{state}
+            </if>
+            <if test="postdate != null">
+                AND t.postdate = #{postdate}
+            </if>
+            <if test="miaoshu != null">
+                AND t.miaoshu = #{miaoshu}
+            </if>
+            <if test="num != null">
+                AND t.num = #{num}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY  t.postdate desc
+            </otherwise>
+        </choose>
+
+    </select>
+
+
+    <select id="findG" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        SELECT
+        t.id AS id,
+        t.UInfoid AS uinfoid,
+        t.name AS name,
+        t.price AS price,
+        t.photo AS photo,
+        t.type AS type,
+        t.address AS address,
+        t.state AS state,
+        t.postdate AS postdate,
+        t.miaoshu AS miaoshu,
+        t.num AS num,
+        t.del_flag AS del_flag
+        FROM
+        goods t
+        <where>
+            t.del_flag = '0' AND  t.state != 1
+            <if test="id != null">
+                AND t.id LIKE #{id}
+            </if>
+            <if test="uinfoid != null">
+                AND t.UInfoid = #{uinfoid}
+            </if>
+            <if test="name != null">
+                AND t.name like #{name}
+            </if>
+            <if test="price != null">
+                AND t.price = #{price}
+            </if>
+            <if test="photo != null">
+                AND t.photo = #{photo}
+            </if>
+            <if test="type != null">
+                AND t.type = #{type}
+            </if>
+            <if test="address != null">
+                AND t.address = #{address}
+            </if>
+
+            <if test="postdate != null">
+                AND t.postdate = #{postdate}
+            </if>
+            <if test="miaoshu != null">
+                AND t.miaoshu = #{miaoshu}
+            </if>
+            <if test="num != null">
+                AND t.num = #{num}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY  t.postdate desc
+            </otherwise>
+        </choose>
+
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            goods
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        DELETE FROM
+            goods
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="uinfoid != null">
+        AND UInfoid = #{uinfoid}
+            </if>
+            <if test="name != null">
+        AND name = #{name}
+            </if>
+            <if test="price != null">
+        AND price = #{price}
+            </if>
+            <if test="address != null">
+        AND address = #{address}
+            </if>
+            <if test="state != null">
+        AND state = #{state}
+            </if>
+            <if test="postdate != null">
+        AND postdate = #{postdate}
+            </if>
+            <if test="miaoshu != null">
+        AND miaoshu = #{miaoshu}
+            </if>
+            <if test="num != null">
+        AND num = #{num}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        INSERT INTO
+            goods
+        (
+            id, 
+            UInfoid, 
+            name, 
+            price,
+            photo,
+            type,
+            address, 
+            state,
+            postdate,
+            miaoshu,
+            num,
+            del_flag
+        )
+        VALUES 
+        (
+            #{id}, 
+            #{uinfoid}, 
+            #{name}, 
+            #{price},
+            #{photo},
+            #{type},
+            #{address}, 
+            #{state},
+            #{postdate},
+            #{miaoshu},
+            #{num},
+            #{del_flag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        UPDATE 
+            goods
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="uinfoid != null">
+            UInfoid = #{uinfoid},
+            </if>
+            <if test="name != null">
+            name = #{name},
+            </if>
+            <if test="price != null">
+            price = #{price},
+            </if>
+            <if test="photo != null">
+            photo = #{photo},
+            </if>
+            <if test="type != null">
+            type = #{type},
+            </if>
+            <if test="address != null">
+            address = #{address},
+            </if>
+            <if test="state != null">
+            state = #{state},
+            </if>
+            <if test="postdate != null">
+                postdate = #{postdate},
+            </if>
+            <if test="miaoshu != null">
+            miaoshu = #{miaoshu},
+            </if>
+            <if test="num != null">
+            num = #{num},
+            </if>
+            <if test="del_flag != null">
+            del_flag = #{del_flag}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Goods">
+        UPDATE 
+            goods
+        <set>
+            id = #{id},
+            UInfoid = #{uinfoid},
+            name = #{name},
+            price = #{price},
+            photo = #{photo},
+            type = #{type},
+            address = #{address},
+            postdate = #{postdate},
+            state = #{state},
+            miaoshu = #{miaoshu},
+            num = #{num},
+            del_flag = #{del_flag}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+
+</mapper>

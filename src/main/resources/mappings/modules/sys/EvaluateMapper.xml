@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.EvaluateMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Evaluate">
+        SELECT
+            t.id AS id, 
+            t.goodsid AS goodsid, 
+            t.uid AS uid, 
+            t.evaluate AS evaluate,
+            t.level AS level, 
+            t.yc AS yc,
+            t.postdate AS postdate,
+            t.del_flag AS del_flag
+        FROM
+            evaluate t
+        WHERE
+            t.id = #{id}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findByUid" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Evaluate">
+        SELECT
+        t.id AS id,
+        t.goodsid AS goodsid,
+        t.uid AS uid,
+        t.evaluate AS evaluate,
+        t.level AS level,
+        t.yc AS yc,
+        t.postdate AS postdate,
+        t.del_flag AS del_flag
+        FROM
+        evaluate t
+        WHERE
+        t.uid = #{uid}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Evaluate">
+        SELECT
+            t.id AS id, 
+            t.goodsid AS goodsid, 
+            t.uid AS uid, 
+            t.evaluate AS evaluate,
+            t.level AS level, 
+            t.yc AS yc,
+            t.postdate AS postdate,
+            t.del_flag AS del_flag
+        FROM
+            evaluate t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+        AND t.id = #{id}
+            </if>
+            <if test="goodsid != null">
+        AND t.goodsid = #{goodsid}
+            </if>
+            <if test="uid != null">
+        AND t.uid = #{uid}
+            </if>
+            <if test="evaluate != null">
+        AND t.evaluate = #{evaluate}
+            </if>
+            <if test="level != null">
+        AND t.level = #{level}
+            </if>
+            <if test="yc != null">
+        AND t.yc = #{yc}
+            </if>
+            <if test="postdate != null">
+        AND t.postdate = #{postdate}
+            </if>
+            <if test="del_flag != null">
+        AND t.del_flag = #{del_flag}
+            </if>
+        </where>
+        ORDER BY t.postdate desc
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            evaluate
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Evaluate">
+        DELETE FROM
+            evaluate
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="goodsid != null">
+        AND goodsid = #{goodsid}
+            </if>
+            <if test="uid != null">
+        AND uid = #{uid}
+            </if>
+            <if test="evaluate != null">
+        AND evaluate = #{evaluate}
+            </if>
+            <if test="level != null">
+        AND level = #{level}
+            </if>
+            <if test="yc != null">
+        AND yc = #{yc}
+            </if>
+            <if test="postdate != null">
+        AND postdate = #{postdate}
+            </if>
+            <if test="del_flag != null">
+        AND del_flag = #{del_flag}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Evaluate">
+        INSERT INTO
+            evaluate
+        (
+            id, 
+            goodsid, 
+            uid, 
+            evaluate,
+            level, 
+            yc,
+            postdate,
+            del_flag
+        )
+        VALUES 
+        (
+            #{id}, 
+            #{goodsid}, 
+            #{uid}, 
+            #{evaluate},
+            #{level}, 
+            #{yc},
+            #{postdate},
+            #{del_flag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Evaluate">
+        UPDATE 
+            evaluate
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="goodsid != null">
+            goodsid = #{goodsid},
+            </if>
+            <if test="uid != null">
+            uid = #{uid},
+            </if>
+            <if test="evaluate != null">
+            evaluate = #{evaluate},
+            </if>
+            <if test="level != null">
+            level = #{level},
+            </if>
+            <if test="yc != null">
+            yc = #{yc},
+            </if>
+            <if test="postdate != null">
+            postdate = #{postdate},
+            </if>
+            <if test="del_flag != null">
+            del_flag = #{del_flag}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Evaluate">
+        UPDATE 
+            evaluate
+        <set>
+            id = #{id},
+            goodsid = #{goodsid},
+            uid = #{uid},
+            evaluate = #{evaluate},
+            level = #{level},
+            yc = #{yc},
+            postdate = #{postdate},
+            del_flag = #{del_flag}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>

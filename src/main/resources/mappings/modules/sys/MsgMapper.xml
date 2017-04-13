@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.MsgMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        SELECT
+            t.id AS id,
+            t.lou AS lou,
+            t.uid AS uid,
+            t.noteid AS noteid,
+            t.msg AS msg, 
+            t.msgphoto AS msgphoto, 
+            t.create_date AS createDate, 
+            t.del_flag AS delFlag
+        FROM
+            msg t
+        WHERE
+            t.id = #{id}
+        AND t.del_flag = '0'
+    </select>
+
+
+    <select id="findByuid" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        SELECT
+        t.id AS id,
+        t.lou AS lou,
+        t.uid AS uid,
+        t.noteid AS noteid,
+        t.msg AS msg,
+        t.msgphoto AS msgphoto,
+        t.create_date AS createDate,
+        t.del_flag AS delFlag
+        FROM
+        msg t
+        WHERE
+        t.uid = #{uid}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findLast"  resultType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        SELECT
+            t.id AS id,
+            t.lou AS lou,
+            t.uid AS uid,
+            t.noteid AS noteid,
+            t.msg AS msg,
+            t.msgphoto AS msgphoto,
+            t.create_date AS createDate,
+            t.del_flag AS delFlag
+        from
+        (
+        SELECT
+              *
+            FROM
+            msg t
+            WHERE
+             t.del_flag = '0' ORDER BY t.create_date desc ) t
+        limit 5
+    </select>
+
+    <select id="findMaxById"  resultType="int">
+        SELECT
+        count(id)
+        FROM
+         msg t
+    </select>
+
+    <select id="findMaxLou" resultType="int" parameterType="String">
+        SELECT
+         MAX(t.lou)
+        FROM msg t
+        WHERE t.noteid = #{noteid}
+    </select>
+
+    <select id="findAllBynoteid" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        SELECT
+            t.id AS id,
+            t.lou AS lou,
+            t.uid AS uid,
+            t.noteid AS noteid,
+            t.msg AS msg,
+            t.msgphoto AS msgphoto,
+            t.create_date AS createDate,
+            t.del_flag AS delFlag
+        FROM
+            msg t
+        WHERE
+            t.del_flag = '0'
+        AND t.noteid = #{noteid}
+
+    </select>
+
+    <select id="findAllDeleteByNoteid" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        SELECT
+        t.id AS id,
+        t.lou AS lou,
+        t.uid AS uid,
+        t.noteid AS noteid,
+        t.msg AS msg,
+        t.msgphoto AS msgphoto,
+        t.create_date AS createDate,
+        t.del_flag AS delFlag
+        FROM
+        msg t
+        WHERE
+         t.noteid = #{noteid}
+
+    </select>
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        SELECT
+            t.id AS id,
+            t.lou AS lou,
+            t.uid AS uid,
+            t.noteid AS noteid,
+            t.msg AS msg, 
+            t.msgphoto AS msgphoto, 
+            t.create_date AS createDate, 
+            t.del_flag AS delFlag
+        FROM
+            msg t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+        AND t.id = #{id}
+            </if>
+            <if test="lou != null">
+        AND t.lou = #{lou}
+            </if>
+            <if test="uid != null">
+        AND t.uid = #{uid}
+            </if>
+            <if test="noteid != null">
+        AND t.noteid = #{noteid}
+            </if>
+            <if test="msg != null">
+        AND t.msg LIKE #{msg}
+            </if>
+            <if test="msgphoto != null">
+        AND t.msgphoto = #{msgphoto}
+            </if>
+            <if test="createDate != null">
+        AND t.create_date = #{createDate}
+            </if>
+            <if test="delFlag != null">
+        AND t.del_flag = #{delFlag}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY  t.create_date  asc
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findDESC" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        SELECT
+        t.id AS id,
+        t.lou AS lou,
+        t.uid AS uid,
+        t.noteid AS noteid,
+        t.msg AS msg,
+        t.msgphoto AS msgphoto,
+        t.create_date AS createDate,
+        t.del_flag AS delFlag
+        FROM
+        msg t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="lou != null">
+                AND t.lou = #{lou}
+            </if>
+            <if test="uid != null">
+                AND t.uid = #{uid}
+            </if>
+            <if test="noteid != null">
+                AND t.noteid = #{noteid}
+            </if>
+            <if test="msg != null">
+                AND t.msg LIKE #{msg}
+            </if>
+            <if test="msgphoto != null">
+                AND t.msgphoto = #{msgphoto}
+            </if>
+            <if test="createDate != null">
+                AND t.create_date = #{createDate}
+            </if>
+            <if test="delFlag != null">
+                AND t.del_flag = #{delFlag}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY  t.create_date  desc
+            </otherwise>
+        </choose>
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            msg
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        DELETE FROM
+            msg
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="lou != null">
+        AND lou = #{lou}
+            </if>
+            <if test="uid != null">
+        AND uid = #{uid}
+            </if>
+            <if test="noteid != null">
+        AND noteid = #{noteid}
+            </if>
+            <if test="msg != null">
+        AND msg = #{msg}
+            </if>
+            <if test="msgphoto != null">
+        AND msgphoto = #{msgphoto}
+            </if>
+            <if test="createDate != null">
+        AND create_date = #{createDate}
+            </if>
+            <if test="delFlag != null">
+        AND del_flag = #{delFlag}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        INSERT INTO
+            msg
+        (
+            id,
+            lou,
+            uid,
+            noteid,
+            msg, 
+            msgphoto, 
+            create_date, 
+            del_flag
+        )
+        VALUES 
+        (
+            #{id},
+             #{lou},
+            #{uid},
+            #{noteid},
+            #{msg}, 
+            #{msgphoto}, 
+            #{createDate}, 
+            #{delFlag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        UPDATE 
+            msg
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="lou != null">
+                lou = #{lou},
+            </if>
+            <if test="uid != null">
+            uid = #{uid},
+            </if>
+            <if test="noteid != null">
+            noteid = #{noteid},
+            </if>
+            <if test="msg != null">
+            msg = #{msg},
+            </if>
+            <if test="msgphoto != null">
+            msgphoto = #{msgphoto},
+            </if>
+            <if test="createDate != null">
+            create_date = #{createDate},
+            </if>
+            <if test="delFlag != null">
+            del_flag = #{delFlag}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Msg">
+        UPDATE 
+            msg
+        <set>
+            id = #{id},
+            lou = #{lou},
+            uid = #{uid},
+            noteid = #{noteid},
+            msg = #{msg},
+            msgphoto = #{msgphoto},
+            create_date = #{createDate},
+            del_flag = #{delFlag}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>

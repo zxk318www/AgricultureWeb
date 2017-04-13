@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.NoteMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        SELECT
+            t.id AS id,
+            t.type AS type,
+            t.Uid AS uid,
+            t.msgid AS msgid,
+            t.title AS title, 
+            t.content AS content, 
+            t.state AS state, 
+            t.PostDate AS postdate, 
+            t.AdminInfoid AS admininfoid, 
+            t.num AS num
+        FROM
+            note t
+        WHERE
+            t.id = #{id}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findDeleteOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        SELECT
+        t.id AS id,
+        t.type AS type,
+        t.Uid AS uid,
+        t.msgid AS msgid,
+        t.title AS title,
+        t.content AS content,
+        t.state AS state,
+        t.PostDate AS postdate,
+        t.AdminInfoid AS admininfoid,
+        t.num AS num
+        FROM
+        note t
+        WHERE
+        t.id = #{id}
+        AND t.del_flag = '1'
+    </select>
+
+    <select id="findByuid" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        SELECT
+        t.id AS id,
+        t.type AS type,
+        t.Uid AS uid,
+        t.msgid AS msgid,
+        t.title AS title,
+        t.content AS content,
+        t.state AS state,
+        t.PostDate AS postdate,
+        t.AdminInfoid AS admininfoid,
+        t.num AS num
+        FROM
+        note t
+        WHERE
+        t.Uid = #{uid}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="findLastNotes"  resultType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        SELECT
+            t.id AS id,
+            t.type AS type,
+            t.Uid AS uid,
+            t.msgid AS msgid,
+            t.title AS title,
+            t.content AS content,
+            t.state AS state,
+            t.PostDate AS postdate,
+            t.AdminInfoid AS admininfoid,
+            t.num AS num
+        from
+        (
+        SELECT
+              *
+            FROM
+            note t
+            WHERE
+             t.del_flag = '0' ORDER BY t.PostDate desc ) t
+        limit 6
+    </select>
+
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+    SELECT
+    t.id AS id,
+    t.type AS type,
+    t.Uid AS uid,
+    t.msgid AS msgid,
+    t.title AS title,
+    t.content AS content,
+    t.state AS state,
+    t.PostDate AS postdate,
+    t.AdminInfoid AS admininfoid,
+    t.num AS num
+    FROM
+    note t
+    <where>
+        t.del_flag = '0'
+        <if test="id != null">
+            AND t.id = #{id}
+        </if>
+        <if test="type != null">
+            AND t.type like #{type}
+        </if>
+        <if test="uid != null">
+            AND t.Uid like #{uid}
+        </if>
+        <if test="msgid != null">
+            AND t.msgid = #{msgid}
+        </if>
+
+        <if test="title != null">
+            AND t.title like #{title}
+        </if>
+        <if test="content != null">
+            AND t.content like #{content}
+        </if>
+        <if test="state != null">
+            AND t.state = #{state}
+        </if>
+        <if test="postdate != null">
+            AND t.PostDate = #{postdate}
+        </if>
+        <if test="admininfoid != null">
+            AND t.AdminInfoid = #{admininfoid}
+        </if>
+        <if test="num != null">
+            AND t.num = #{num}
+        </if>
+
+    </where>
+
+    <choose>
+        <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+            ORDER BY ${page.orderBy}
+        </when>
+        <otherwise>
+            ORDER BY  t.postdate desc
+        </otherwise>
+    </choose>
+</select>
+
+    <select id="findDelete" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        SELECT
+        t.id AS id,
+        t.type AS type,
+        t.Uid AS uid,
+        t.msgid AS msgid,
+        t.title AS title,
+        t.content AS content,
+        t.state AS state,
+        t.PostDate AS postdate,
+        t.AdminInfoid AS admininfoid,
+        t.num AS num
+        FROM
+        note t
+        <where>
+            t.del_flag = '1'
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="type != null">
+                AND t.type like #{type}
+            </if>
+            <if test="uid != null">
+                AND t.Uid like #{uid}
+            </if>
+            <if test="msgid != null">
+                AND t.msgid = #{msgid}
+            </if>
+
+            <if test="title != null">
+                AND t.title like #{title}
+            </if>
+            <if test="content != null">
+                AND t.content like #{content}
+            </if>
+            <if test="state != null">
+                AND t.state = #{state}
+            </if>
+            <if test="postdate != null">
+                AND t.PostDate = #{postdate}
+            </if>
+            <if test="admininfoid != null">
+                AND t.AdminInfoid = #{admininfoid}
+            </if>
+            <if test="num != null">
+                AND t.num = #{num}
+            </if>
+
+        </where>
+
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY  t.postdate desc
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="findState" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        SELECT
+        t.id AS id,
+        t.type AS type,
+        t.Uid AS uid,
+        t.msgid AS msgid,
+        t.title AS title,
+        t.content AS content,
+        t.state AS state,
+        t.PostDate AS postdate,
+        t.AdminInfoid AS admininfoid,
+        t.num AS num
+        FROM
+        note t
+        <where>
+            t.del_flag = '0' and t.state =0
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="type != null">
+                AND t.type like #{type}
+            </if>
+            <if test="uid != null">
+                AND t.Uid like #{uid}
+            </if>
+            <if test="msgid != null">
+                AND t.msgid = #{msgid}
+            </if>
+
+            <if test="title != null">
+                AND t.title like #{title}
+            </if>
+            <if test="content != null">
+                AND t.content like #{content}
+            </if>
+            <if test="state != null">
+                AND t.state = #{state}
+            </if>
+            <if test="postdate != null">
+                AND t.PostDate = #{postdate}
+            </if>
+            <if test="admininfoid != null">
+                AND t.AdminInfoid = #{admininfoid}
+            </if>
+            <if test="num != null">
+                AND t.num = #{num}
+            </if>
+
+        </where>
+
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY  t.postdate desc
+            </otherwise>
+        </choose>
+
+    </select>
+
+
+    <select id="findMaxById"  resultType="int">
+        SELECT
+        count(id)
+        FROM
+        note t
+    </select>
+
+    <select id="findNoteByTitle" parameterType="String"  resultType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        SELECT
+            t.id AS id,
+            t.type AS type,
+            t.Uid AS uid,
+            t.msgid AS msgid,
+            t.title AS title,
+            t.content AS content,
+            t.state AS state,
+            t.PostDate AS postdate,
+            t.AdminInfoid AS admininfoid,
+            t.num AS num
+        FROM
+        note t
+        where title = #{title}
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            note
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        DELETE FROM
+            note
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="type != null">
+        AND type = #{type}
+            </if>
+            <if test="msgid != null">
+        AND msgid = #{msgid}
+            </if>
+            <if test="uid != null">
+        AND Uid = #{uid}
+            </if>
+            <if test="title != null">
+        AND title = #{title}
+            </if>
+            <if test="content != null">
+        AND content = #{content}
+            </if>
+            <if test="state != null">
+        AND state = #{state}
+            </if>
+            <if test="postdate != null">
+        AND PostDate = #{postdate}
+            </if>
+            <if test="admininfoid != null">
+        AND AdminInfoid = #{admininfoid}
+            </if>
+            <if test="num != null">
+        AND num = #{num}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        INSERT INTO
+            note
+        (
+            id,
+            type,
+            Uid,
+            msgid,
+            title, 
+            content, 
+            state, 
+            PostDate, 
+            AdminInfoid, 
+            num,
+            del_flag
+        )
+        VALUES 
+        (
+            #{id},
+            #{type},
+            #{uid},
+            #{msgid},
+            #{title}, 
+            #{content}, 
+            #{state}, 
+            #{postdate}, 
+            #{admininfoid}, 
+            #{num},
+            #{del_flag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        UPDATE 
+            note
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="type != null">
+            type = #{type},
+            </if>
+            <if test="uid != null">
+            Uid = #{uid},
+            </if>
+            <if test="msgid != null">
+            msgid = #{msgid},
+            </if>
+            <if test="title != null">
+            title = #{title},
+            </if>
+            <if test="content != null">
+            content = #{content},
+            </if>
+            <if test="state != null">
+            state = #{state},
+            </if>
+            <if test="postdate != null">
+            PostDate = #{postdate},
+            </if>
+            <if test="admininfoid != null">
+            AdminInfoid = #{admininfoid},
+            </if>
+            <if test="num != null">
+            num = #{num},
+            </if>
+            <if test="del_flag != null">
+            del_flag =#{del_flag}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Note">
+        UPDATE 
+            note
+        <set>
+            id = #{id},
+            type = #{type},
+            Uid = #{uid},
+            msgid = #{msgid},
+            title = #{title},
+            content = #{content},
+            state = #{state},
+            PostDate = #{postdate},
+            AdminInfoid = #{admininfoid},
+            num = #{num}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>

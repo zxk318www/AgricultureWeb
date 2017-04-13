@@ -1,0 +1,242 @@
+/* login */
+
+.login-ad{
+	float:left;
+}
+
+.login-form{
+	float:right;
+	width:330px;
+	height:auto;
+	border:#e5e5e5 solid 1px;
+	border-top:#66c678 solid 2px;
+	padding-left:20px;
+	padding-top:45px;
+	position:relative;
+}
+.login-form h1{
+	line-height:45px;
+	height:45px;
+	overflow:hidden;
+	font-size:18px;
+	position:absolute;
+	top:0;
+	left:-1px;
+	background:#66c678;
+	color:#fff;
+	text-align:center;
+	width:352px;
+}
+.login-msg{
+	line-height:18px; 
+	height:36px;
+}
+.login-msg span{
+	color:#ff4200;
+}
+.login-form .usertxt{
+	line-height:28px;
+	height:28px;
+	margin-top:10px;
+	font-size:14px;
+	font-weight:bold;
+}
+.login-form .userinput{
+	width:300px; 
+	height:32px;
+	background:url(../images/common/login-user.png) right top no-repeat;
+	padding-left:5px;
+	border:#ccc solid 1px;
+	overflow:hidden;
+}
+.login-form .userinput input{
+	width:265px; 
+	height:32px; 
+	border:0px;
+}
+.login-form .passwordtxt{
+	line-height:24px;
+	height:24px;
+	margin-top:6px;
+	font-size:14px;
+	font-weight:bold;
+}
+.login-form .passwordinput{
+	width:300px; 
+	height:32px;
+	background:url(../images/common/login-password.png) right top no-repeat;
+	padding-left:5px;
+	border:#ccc solid 1px;
+	overflow:hidden;
+}
+.login-form .passwordinput input{
+	width:265px; 
+	height:32px; 
+	border:0px;
+}
+.login-form .codetxt{
+	line-height:24px;
+	height:24px;
+	margin-top:6px;
+	font-size:14px;
+	font-weight:bold;
+}
+.login-form .codeinput{
+	height:34px;
+	overflow:hidden;
+}
+.login-form .codeinput input{
+	width:98px; 
+	height:32px; 
+	border:#ccc solid 1px;
+	padding-left:5px;
+	float:left;
+	display:inline;
+}
+.login-form .codeinput .verify{
+	float:left;
+	display:inline;
+	width:60px;
+	height:30px;
+	margin:2px 5px 0 5px;
+}
+.login-form .codeinput span{
+	float:left;
+	display:inline;
+	line-height:34px;
+	margin-left:5px;
+}
+.login-form .codeinput span a{
+	color:#009436;	
+}
+.login-form .forget{
+	height:48px;
+	overflow:hidden;
+	clear:both;
+	font-size:12px;
+	line-height:1.5;
+}
+.login-form .forget em{
+	width:14px; 
+	height:14px; 
+	overflow:hidden; 
+	border:#ccc solid 1px; 
+	float:left; 
+	display:inline;
+	cursor:pointer;
+	margin-top:16px;
+}
+.login-form .forget em.cur{
+	background:url(../images/myhn/common/checked-bg.png) no-repeat;
+}
+.login-form .forget span{
+	float:left;
+	display:inline;
+	line-height:48px;
+	margin-left:5px;	
+}
+.login-form .forget a{
+	float:right;
+	display:inline;
+	line-height:48px;
+	margin-right:22px;
+}
+.login-form .userloginbut{
+	width:307px;
+	display:block;
+	height:34px;
+	line-height:34px;
+	font-size:14px;
+	font-weight:bold;
+	color:#fff;
+	background:#ff4200;
+	text-align:center;
+}
+.login-form .userloginbut:hover {
+   background:#ff9f23;
+}
+.login-form .login-qq{
+	width:307px;
+	margin-top:16px;
+	border-top:#e5e5e5 solid 1px;
+	font-size:12px;
+	line-height:1.5;
+}
+.login-form .login-qq span{
+	float:left;
+	line-height:45px;
+}
+.login-form .login-qq .qqico{
+	float:left;
+	margin:15px 0 0 5px;
+}
+.login-form .login-qq .regin{
+	line-height:45px;
+	float:right;
+}
+
+/*- error -*/
+.reg-hint{ width:330px; height:37px; line-height:37px; margin-left:10px;}
+.reg-hint i{ margin:11px 6px 0 0;}
+
+.reg-ico-1{ background:url(../images/common/correct.png) no-repeat; width:15px; height:15px; float:left;}
+.reg-ico-2{ background:url(../images/common/error.png) no-repeat; width:15px; height:15px; float:left;}
+
+
+.tl {
+	width: 150px;
+	text-align: right;
+	padding-right: 20px;
+}
+
+.reg_title {
+	border-bottom: #CCCCCC 1px solid;
+	font-weight: bold;
+	padding: 0 0 10px 10px;
+	margin: 15px 55px 0 55px;
+	font-size: 14px;
+	color: #FF6600;
+}
+
+.reg_inp {
+	border: #7F9DB9 1px solid;
+	padding: 3px 0 3px 0;
+}
+
+.tips {
+	position: absolute;
+	z-index: 1000;
+	width: 300px;
+	background: url('../img/tips_bg.gif') no-repeat 0 bottom;
+	overflow: hidden;
+	margin: -5px 0 0 -10px;
+}
+
+.tips div {
+	background: url('../img/tips_top.gif') no-repeat;
+	line-height: 22px;
+	padding: 8px 10px 8px 35px;
+}
+
+.pos {
+	padding: 4px 15px;
+	line-height: 31px;
+	background: #e1f6e5;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.f_b {
+	font-weight: bold;
+}
+
+a.b:link,
+a.b:visited,
+a.b:active {
+	color: #0085eb;
+	text-decoration: none;
+}
+
+a.b:hover {
+	color: #FF6600;
+}

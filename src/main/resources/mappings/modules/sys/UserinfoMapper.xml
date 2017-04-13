@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.UserinfoMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Userinfo">
+        SELECT
+            t.id AS id,
+            t.Uid AS uid,
+            t. NAME AS NAME,
+            t.age AS age,
+            t.IDCard AS idCard,
+            t.phone AS phone,
+            t.moblie AS moblie,
+            t.sex AS sex,
+            t.address AS address,
+            t. LEVEL AS LEVEL,
+            t.balance AS balance,
+            t.state AS state,
+            t.LLoginDate AS llogindate,
+            t.del_flag as del_flag
+        FROM
+            userinfo t LEFT JOIN user a ON
+            t.uid = a.id
+       WHERE t.uid=#{uid} AND t.del_flag = '0'
+    </select>
+
+    <select id="findDeleteOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Userinfo">
+        SELECT
+        t.id AS id,
+        t.Uid AS uid,
+        t. NAME AS NAME,
+        t.age AS age,
+        t.IDCard AS idCard,
+        t.phone AS phone,
+        t.moblie AS moblie,
+        t.sex AS sex,
+        t.address AS address,
+        t. LEVEL AS LEVEL,
+        t.balance AS balance,
+        t.state AS state,
+        t.LLoginDate AS llogindate,
+        t.del_flag as del_flag
+        FROM
+        userinfo t
+        WHERE t.uid=#{uid} AND t.del_flag = '1'
+    </select>
+
+    <select id="findMaxById"  resultType="String">
+        SELECT
+          MAX(id)
+        FROM
+        userinfo t
+    </select>
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Userinfo">
+        SELECT
+            t.id AS id, 
+            t.Uid AS uid, 
+            t.name AS name, 
+            t.age AS age, 
+            t.IDCard AS idCard,
+            t.phone AS phone,
+            t.moblie AS moblie,
+            t.sex AS sex, 
+            t.address AS address, 
+            t.Level AS level, 
+            t.balance AS balance, 
+            t.state AS state, 
+            t.LLoginDate AS llogindate ,
+            t.del_flag as del_flag
+        FROM
+            userinfo t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+        AND t.id = #{id}
+            </if>
+            <if test="uid != null">
+        AND t.Uid = #{uid}
+            </if>
+            <if test="name != null">
+        AND t.name = #{name}
+            </if>
+            <if test="age != null">
+        AND t.age = #{age}
+            </if>
+            <if test="idCard != null">
+        AND t.IDCard = #{idCard}
+            </if>
+            <if test="phone != null">
+        AND t.phone = #{phone}
+            </if>
+            <if test="moblie != null">
+        AND t.moblie = #{moblie}
+            </if>
+            <if test="sex != null">
+        AND t.sex = #{sex}
+            </if>
+            <if test="address != null">
+        AND t.address = #{address}
+            </if>
+            <if test="level != null">
+        AND t.Level = #{level}
+            </if>
+            <if test="balance != null">
+        AND t.balance = #{balance}
+            </if>
+            <if test="state != null">
+        AND t.state = #{state}
+            </if>
+            <if test="llogindate != null">
+        AND t.LLoginDate = #{llogindate}
+            </if>
+            <if test="del_flag != null">
+        AND t.del_flag = #{del_flag}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            userinfo
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Userinfo">
+        DELETE FROM
+            userinfo
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="uid != null">
+        AND Uid = #{uid}
+            </if>
+            <if test="name != null">
+        AND name = #{name}
+            </if>
+            <if test="age != null">
+        AND age = #{age}
+            </if>
+            <if test="idCard != null">
+        AND IDCard = #{idCard}
+            </if>
+            <if test="phone != null">
+        AND phone = #{phone}
+            </if>
+            <if test="sex != null">
+        AND sex = #{sex}
+            </if>
+            <if test="address != null">
+        AND address = #{address}
+            </if>
+            <if test="level != null">
+        AND Level = #{level}
+            </if>
+            <if test="balance != null">
+        AND balance = #{balance}
+            </if>
+            <if test="state != null">
+        AND state = #{state}
+            </if>
+            <if test="llogindate != null">
+        AND LLoginDate = #{llogindate}
+            </if>
+            <if test="del_flag != null">
+        AND t.del_flag = #{del_flag}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Userinfo">
+        INSERT INTO
+            userinfo
+        (
+            id, 
+            Uid, 
+            name, 
+            age, 
+            IDCard, 
+            phone,
+            moblie,
+            sex, 
+            address, 
+            Level, 
+            balance, 
+            state, 
+            LLoginDate,
+            del_flag
+        )
+        VALUES 
+        (
+            #{id}, 
+            #{uid}, 
+            #{name}, 
+            #{age}, 
+            #{idCard},
+            #{phone},
+            #{moblie},
+            #{sex}, 
+            #{address}, 
+            #{level}, 
+            #{balance}, 
+            #{state}, 
+            #{llogindate},
+            #{del_flag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Userinfo">
+        UPDATE 
+            userinfo
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="uid != null">
+            Uid = #{uid},
+            </if>
+            <if test="name != null">
+            name = #{name},
+            </if>
+            <if test="age != null">
+            age = #{age},
+            </if>
+            <if test="idCard != null">
+            IDCard = #{idCard},
+            </if>
+            <if test="phone != null">
+            phone = #{phone},
+            </if>
+            <if test="moblie != null">
+            moblie = #{moblie},
+            </if>
+            <if test="sex != null">
+            sex = #{sex},
+            </if>
+            <if test="address != null">
+            address = #{address},
+            </if>
+            <if test="level != null">
+            Level = #{level},
+            </if>
+            <if test="balance != null">
+            balance = #{balance},
+            </if>
+            <if test="state != null">
+            state = #{state},
+            </if>
+            <if test="llogindate != null">
+            LLoginDate = #{llogindate},
+            </if>
+            <if test="del_flag != null">
+            del_flag = #{del_flag}
+            </if>
+        </set>
+        WHERE
+            Uid = #{uid}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Userinfo">
+        UPDATE 
+            userinfo
+        <set>
+            id = #{id},
+            Uid = #{uid},
+            name = #{name},
+            age = #{age},
+            IDCard = #{idCard},
+            phone = #{phone},
+            moblie = #{moblie},
+            sex = #{sex},
+            address = #{address},
+            Level = #{level},
+            balance = #{balance},
+            state = #{state},
+            LLoginDate = #{llogindate}
+            del_flag = #{del_flag}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>
