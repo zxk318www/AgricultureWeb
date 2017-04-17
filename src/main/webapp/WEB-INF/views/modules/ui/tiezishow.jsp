@@ -364,7 +364,7 @@
             data:{"uid":data},
             success : function(text){
                 if(text == "01"){
-                    location.href="${ctx}/logout";
+                    location.href="${ctx}/logout";    
                 }
             }
 
