@@ -187,17 +187,17 @@
                                     </tr>
                                 </td>
                                 <td class="tl">证件号码 <span class="f_red">*</span></td>
-                                <td><input type="text" class="mini-textbox" style="width:200px;" name="idCard" id="idCard" required="true" requiredErrorText="证件号码不能为空" onvalidation="check"></td>
+                                <td><input type="text" class="mini-textbox" style="width:200px;" name="idCard" id="idCard" required="true" requiredErrorText="证件号码不能为空" onvalidation="onIDCardsValidation"></td>
 
                                     </tr>
                                 <td class="tl">年龄 </td>
-                                <td><input type="text" class="mini-textbox" style="width:200px;" name="age" id="age"  ></td>
+                                <td><input type="text" class="mini-textbox" style="width:200px;" name="age" id="age"  vtype="range:18,100" ></td>
 
                                     </tr>
 
 
                                 <td class="tl">手机号码 <span class="f_red">*</span></td>
-                                <td><input type="text" class="mini-textbox" style="width:200px;" name="moblie" id="moblie" required="true" requiredErrorText="手机号码不能为空" onvalidation="check"></td>
+                                <td><input type="text" class="mini-textbox" style="width:200px;" name="moblie" id="moblie" required="true" requiredErrorText="手机号码不能为空" onvalidation="phoneValidation"></td>
                                 <td>
                                     <span id="dmobile" class="f_red"></span>&nbsp;
                                 </td>
@@ -554,6 +554,37 @@
             if (e.isValid) {
                 if (isChinese(e.value) == false) {
                     e.errorText = "必须输入中文";
+                    e.isValid = false;
+                }else{
+                    e.isValid = true;
+                }
+            }
+        }
+
+        /* 是否汉字 */
+        function isChinese(v) {
+            var re = new RegExp("^[\u4e00-\u9fa5]+$");
+            if (re.test(v)) return true;
+            return false;
+        }
+
+        //页面身份证正则表达表验证
+        function onIDCardsValidation(e) {
+            if (e.isValid) {
+                var pattern = /\d*/;
+                if (e.value.length < 15 || e.value.length > 18 || pattern.test(e.value) == false) {
+                    e.errorText = "必须输入15~18位数字";
+                    e.isValid = false;
+                }
+            }
+        }
+
+        //页面手机号码验证
+        function phoneValidation(e){
+            if (e.isValid) {
+                var pattern = /\d*/;
+                if (e.value.length < 11 || e.value.length > 13 || pattern.test(e.value) == false) {
+                    e.errorText = "必须输入11~13位数字";
                     e.isValid = false;
                 }
             }
