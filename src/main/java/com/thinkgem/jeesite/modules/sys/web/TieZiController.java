@@ -383,29 +383,31 @@ public class TieZiController  extends BaseController {
         HttpSession session = request.getSession();
         Note note = new Note();
         Userinfo u  = (Userinfo) session.getAttribute("userinfo");
-        if(StringUtils.isNoneBlank(u.getUid())){
-            note.setUid(u.getUid());
-        }
-        System.out.println(userinfoid);
-        //增加模糊查询
-        if(StringUtils.isNoneBlank(key)){
-            key = "%"+key+"%";
-        }else {
-            key = null;
-        }
+        if(u != null){
+            if(StringUtils.isNoneBlank(u.getUid())){
+                note.setUid(u.getUid());
+            }
+            System.out.println(userinfoid);
+            //增加模糊查询
+            if(StringUtils.isNoneBlank(key)){
+                key = "%"+key+"%";
+            }else {
+                key = null;
+            }
 
-        if(StringUtils.isNoneBlank(rankType)){
-            if("2".equals(rankType)){
-                note.setTitle(key);
-            }
-            if("1".equals(rankType)){
-                note.setType(key);
-            }
-            if("3".equals(rankType)){
-                note.setContent(key);
-            }
-            if("4".equals(rankType)){
-                note.setUid(key);
+            if(StringUtils.isNoneBlank(rankType)){
+                if("2".equals(rankType)){
+                    note.setTitle(key);
+                }
+                if("1".equals(rankType)){
+                    note.setType(key);
+                }
+                if("3".equals(rankType)){
+                    note.setContent(key);
+                }
+                if("4".equals(rankType)){
+                    note.setUid(key);
+                }
             }
         }
         MiniPage ps = new MiniPage(request, response);
