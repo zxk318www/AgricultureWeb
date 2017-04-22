@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.thinkgem.jeesite.modules.sys.dao.SwitchimgMapper">
+    <select id="findOne" parameterType="String" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Switchimg">
+        SELECT
+            t.id AS id, 
+            t.img AS img, 
+            t.adminid AS adminid, 
+            t.yl AS yl, 
+            t.del_flag AS delFlag
+        FROM
+            switchimg t
+        WHERE
+            t.id = #{id}
+        AND t.del_flag = '0'
+    </select>
+
+    <select id="find" parameterType="map" resultType="com.thinkgem.jeesite.modules.agriculture.entity.Switchimg">
+        SELECT
+            t.id AS id, 
+            t.img AS img, 
+            t.adminid AS adminid, 
+            t.yl AS yl, 
+            t.del_flag AS delFlag
+        FROM
+            switchimg t
+        <where>
+            t.del_flag = '0'
+            <if test="id != null">
+        AND t.id = #{id}
+            </if>
+            <if test="img != null">
+        AND t.img = #{img}
+            </if>
+            <if test="adminid != null">
+        AND t.adminid = #{adminid}
+            </if>
+            <if test="yl != null">
+        AND t.yl = #{yl}
+            </if>
+            <if test="delFlag != null">
+        AND t.del_flag = #{delFlag}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteOne" parameterType="String">
+        DELETE FROM
+            switchimg
+        WHERE
+            id = #{id}
+    </delete>
+
+    <delete id="delete" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Switchimg">
+        DELETE FROM
+            switchimg
+        <where>
+            <if test="id != null">
+            id = #{id}
+            </if>
+            <if test="img != null">
+        AND img = #{img}
+            </if>
+            <if test="adminid != null">
+        AND adminid = #{adminid}
+            </if>
+            <if test="yl != null">
+        AND yl = #{yl}
+            </if>
+            <if test="delFlag != null">
+        AND del_flag = #{delFlag}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Switchimg">
+        INSERT INTO
+            switchimg
+        (
+            id, 
+            img, 
+            adminid, 
+            yl, 
+            del_flag
+        )
+        VALUES 
+        (
+            #{id}, 
+            #{img}, 
+            #{adminid}, 
+            #{yl}, 
+            #{delFlag}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Switchimg">
+        UPDATE 
+            switchimg
+        <set>
+            <if test="id != null">
+            id = #{id},
+            </if>
+            <if test="img != null">
+            img = #{img},
+            </if>
+            <if test="adminid != null">
+            adminid = #{adminid},
+            </if>
+            <if test="yl != null">
+            yl = #{yl},
+            </if>
+            <if test="delFlag != null">
+            del_flag = #{delFlag}
+            </if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updateWithAllFields" parameterType="com.thinkgem.jeesite.modules.agriculture.entity.Switchimg">
+        UPDATE 
+            switchimg
+        <set>
+            id = #{id},
+            img = #{img},
+            adminid = #{adminid},
+            yl = #{yl},
+            del_flag = #{delFlag}
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>

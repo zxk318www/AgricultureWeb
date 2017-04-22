@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${ctxStatic}/scripts/miniui/themes/bootstrap/skin.css" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>管理员后台</title>
+    <title>农林交流网后台</title>
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
@@ -52,7 +52,7 @@
 
 <header class="am-topbar am-topbar-inverse admin-header">
     <div class="am-topbar-brand">
-        <strong>农林交流网</strong> <small>后台管理(完整版)</small>
+        <strong>农林交流网</strong> <small>后台管理(完整版)————管理员主页面</small>
     </div>
 
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -107,7 +107,7 @@
     <div class="admin-content">
         <div class="admin-content-body">
             <div class="am-cf am-padding">
-                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>一些常用模块</small></div>
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">管理员主页面</strong> / <small>数据预览</small></div>
             </div>
 
             <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
@@ -156,6 +156,9 @@
                 </div>
             </div>
 
+            <div class="am-cf am-padding">
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">系统设置</strong> / <small>常用模块</small></div>
+            </div>
             <div class="am-g">
                 <div class="am-u-md-6">
                     <div class="am-panel am-panel-default">
