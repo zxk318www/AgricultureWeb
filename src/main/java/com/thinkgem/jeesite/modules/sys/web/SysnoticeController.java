@@ -215,5 +215,29 @@ public class SysnoticeController {
         return null;
     }
 
+    /**
+     * 添加轮播图片
+     * @return
+     */
+    @RequestMapping(value = "addSwitchImg")
+    @ResponseBody
+    public String addSwitchImg(String img,String adminid){
+        Switchimg switchimg = new Switchimg();
+        if (StringUtils.isNoneBlank(adminid)){
+            Admininfo admininfo = userService.findAdminInfo(adminid);
+            if (admininfo!=null && StringUtils.isNoneBlank(admininfo.getUid())){
+                switchimg.setAdminid(admininfo.getUid());
+            }
+        }
+        if (StringUtils.isNoneBlank(img)){
+            switchimg.setImg(img);
+        }
+        switchimg = sysnoticeService.getSwitchImg(switchimg);
+        boolean flag = sysnoticeService.saveSwitchImg(switchimg);
+        if (flag){
+            return "ok";
+        }
+        return null;
+    }
 
 }

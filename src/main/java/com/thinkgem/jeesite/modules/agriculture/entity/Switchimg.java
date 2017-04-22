@@ -1,12 +1,14 @@
 package com.thinkgem.jeesite.modules.agriculture.entity;
 
+import com.thinkgem.jeesite.common.persistence.BaseEntity;
+
 /**
  * Po
  * 
  * @author Silver Howe
  * @version 1.0, 2017/4/22 22:35:38
  */
-public class Switchimg {
+public class Switchimg extends BaseEntity {
 
 	/**
 	 * 图片id
@@ -50,6 +52,16 @@ public class Switchimg {
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	@Override
+	public void preInsert() {
+
+	}
+
+	@Override
+	public void preUpdate() {
+
 	}
 
 	/**

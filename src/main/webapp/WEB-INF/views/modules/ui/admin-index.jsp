@@ -181,6 +181,17 @@
                             <button style="margin-left: 30px;margin-bottom: 10px;"  onclick="cancelN()">取消</button></td></div>
                         </div>
                     </div>
+
+                    <div class="am-panel am-panel-default">
+                        <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">轮播图片上传<span class="am-icon-upload"></span></div>
+                        <div class="am-panel-bd am-collapse am-in" id="collapse-panel-2">
+                            <textarea name="article.content3" cols="100" rows="8" style="width:100%;height:200px;visibility:hidden;"></textarea>
+                            <div style="margin-top: 10px"><td colspan="2" ><button style="margin-left: 40%;margin-bottom: 10px;"  onclick="uploadsImg()">上传</button>
+                                <button style="margin-left: 30px;margin-bottom: 10px;"  onclick="cancelUp()">取消</button></td></div>
+
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="am-u-md-6">
@@ -378,6 +389,38 @@
                         K("#imgbox").attr("src", url);
                         K("#imgbox").show();
                         editor2.hideDialog();
+                    }
+                });
+            });
+        });
+        prettyPrint();
+    });
+
+    var editor3 = null;
+    KindEditor.ready(function(K) {
+        editor3 = K.create('textarea[name="article.content3"]', {
+            resizeType : 1,//只支持纵向拉伸
+            uploadJson : '${ctxStatic}/kindeditor-4.1.7/jsp/upload_json.jsp',
+            fileManagerJson : '${ctxStatic}/kindeditor-4.1.7/jsp/file_manager_json.jsp',
+            allowFileManager : true, //允许管理上传文件
+            allowImageUpload: true,//允许图片上传
+            imageUploadLimit : 10,//批量上传图片同时上传最多个数
+            afterUpload:function(){this.sync();},//图片上传后，内容同步到textarea
+            afterBlur:function(){this.sync();}, // 失去焦点后，将上传的图片同步到textarea
+            height:100,
+            items: [
+                'image']
+        });
+        K('#chooseImage').click(function () {
+            editor3.loadPlugin('image', function () {
+                editor3.plugin.imageDialog({
+                    showRemote: false,
+                    imageUrl: K('#PicUrl').val(),
+                    clickFn: function (url, message, error) {
+                        alert("上传成功!");
+                        K("#imgbox").attr("src", url);
+                        K("#imgbox").show();
+                        editor.hideDialog();
                     }
                 });
             });
@@ -642,6 +685,7 @@
         });
     }
 
+    //专家课堂推送
     function uploads(){
         var text = editor2.html();
         var adminid = '${admininfo.uid}';
@@ -658,7 +702,7 @@
             scriptCharset: 'utf-8',
             success:function (text) {
                 if (text=="ok"){
-                    mini.alert("上传成功！");
+                    mini.alert("推送成功！");
                     location.reload();
                 }
             }
@@ -670,6 +714,29 @@
         mini.get('title').setValue("");
     }
 
+
+    //上传轮播图片
+    function uploadsImg(){
+        var adminid = '${admininfo.uid}';
+        var img = editor3.html();
+        if(img == "" || img == null){
+            mini.alert("请先选择图片！");
+            return;
+        }
+        $.ajax({
+            url:"${path}/SysnoticeCheck/addSwitchImg",
+            type:"post",
+            data:{"img":img,"adminid":adminid},
+            async:false,
+            scriptCharset: 'utf-8',
+            success:function (text) {
+                if (text=="ok"){
+                    mini.alert("上传成功！");
+                    location.reload();
+                }
+            }
+        });
+    }
 </script>
 
 </body>

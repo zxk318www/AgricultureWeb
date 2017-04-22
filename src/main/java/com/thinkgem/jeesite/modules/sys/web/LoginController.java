@@ -4,6 +4,7 @@
 package com.thinkgem.jeesite.modules.sys.web;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -124,6 +125,17 @@ public class LoginController extends BaseController{
 				}
 			}
 			modelMap.put("goods", list2);
+		}
+
+		//图片轮播
+		List<String> strs = new ArrayList<String>();
+		List<Switchimg> list3 = sysnoticeService.getSwitchImgs();
+		if (list3!=null && list3.size()>0){
+			for (Switchimg switchimg:list3){
+				strs.add(switchimg.getImg());
+			}
+			modelMap.put("simgs",strs);
+
 		}
 
 		return "modules/ui/newIndex";

@@ -6,6 +6,7 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.agriculture.entity.*;
 import com.thinkgem.jeesite.modules.sys.dao.GoodsMapper;
 import com.thinkgem.jeesite.modules.sys.dao.OrderMapper;
+import com.thinkgem.jeesite.modules.sys.dao.SwitchimgMapper;
 import com.thinkgem.jeesite.modules.sys.dao.SysnoticeMapper;
 import com.thinkgem.jeesite.modules.sys.web.MiniPage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class SysnoticeService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    SwitchimgMapper switchimgMapper;
 
 
 
@@ -453,6 +457,68 @@ public class SysnoticeService {
         return false;
     }
 
+    /**
+     * 自动补充SwitchImg实体类（轮播图片实体类）
+     * @return
+     */
+    public Switchimg getSwitchImg(Switchimg switchimg){
+        //自动生成id
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHmmss");
+        Date date = new Date();
+        String dateStr = sdf.format(date);
+        int num = (int) (Math.random()*10000);
+        String str = String.valueOf(num);
+        int sub = (int) (Math.random()*8);
+        str = dateStr+str;
+        str = str.substring(sub);
+        String str1 = "si00"+str;
+        switchimg.setId(str1);
+        //添加删除标记——默认为0
+        switchimg.setDelFlag(0);
 
+        //更改图片大小
+        String img = switchimg.getImg();
+        if (StringUtils.isNoneBlank(img)){
+            img = img.replace("/>","style=\"width:800px; height:500px\"/>");
+            switchimg.setImg(img);
+        }
+        return switchimg;
+
+    }
+
+    /**
+     * 保存轮播图片，如果已存在则走更新，若无则新增记录
+     * @param switchimg
+     * @return
+     */
+    @Transactional(readOnly = false)
+    public boolean saveSwitchImg(Switchimg switchimg){
+        if (switchimg!=null){
+           Switchimg switchimg1 =  switchimgMapper.findOne(switchimg.getId());
+            if (switchimg1!=null){
+                switchimgMapper.update(switchimg);
+                return true;
+            }else{
+                switchimgMapper.insert(switchimg);
+                Switchimg switchimg2 = switchimgMapper.findOne(switchimg.getId());
+                if (switchimg2!=null){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 返回录播图片
+     * @return
+     */
+    public List<Switchimg> getSwitchImgs(){
+        List<Switchimg> list = switchimgMapper.find(null);
+        if (list!=null && list.size()>0){
+            return list;
+        }
+        return null;
+    }
 
 }

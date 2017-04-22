@@ -21,6 +21,7 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class TestController extends BaseController {
 
     @Autowired
     GoodsService goodsService;
+
 
     /**
      * 跳转到登录界面
@@ -254,6 +256,16 @@ public class TestController extends BaseController {
                 }
             }
             modelMap.put("goods", list2);
+        }
+        //图片轮播
+        List<String> strs = new ArrayList<String>();
+        List<Switchimg> list3 = sysnoticeService.getSwitchImgs();
+        if (list3!=null && list3.size()>0){
+            for (Switchimg switchimg:list3){
+                strs.add(switchimg.getImg());
+            }
+            modelMap.put("simgs",strs);
+
         }
 
         return "modules/ui/newIndex";
