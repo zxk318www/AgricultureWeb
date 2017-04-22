@@ -75,7 +75,7 @@
 
 <div class="top">
     <div class="topbar">
-        <div class="sz_fr" id="destoon_member">欢迎，${img} ${adminifo.name} <a>->个人中心</a></div>
+        <div class="sz_fr" id="destoon_member" style="font-size: 15px">欢迎，${img} ${adminifo.name} <a>->个人中心</a></div>
         <div class="m head_s" id="destoon_space"></div>
         <div class="m">
             <div id="search_tips" style="display:none;"></div>

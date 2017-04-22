@@ -211,7 +211,7 @@ public class TestController extends BaseController {
             modelMap.addAttribute("uid",user.getId());
         }
         if (userinfo!=null){
-            if(userinfo.getLevel()==5){
+            if(userinfo.getLevel()!=null && userinfo.getLevel()==5){
                 //如果是会员用户，显示
                 modelMap.addAttribute("level","尊贵的会员用户：");
             }else{

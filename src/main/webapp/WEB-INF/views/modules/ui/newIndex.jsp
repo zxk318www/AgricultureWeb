@@ -58,7 +58,7 @@
 
 <div class="top">
     <div class="topbar">
-        <div class="sz_fr" id="destoon_member">欢迎， <c:if test="${empty user}"><span class="f_red">游客</span><a href="${path}/logincheck/tologin">请登录</a> | <a href="${path}/logincheck/sigin">免费注册</a></c:if>
+        <div class="sz_fr" id="destoon_member" style="font-size: 15px">欢迎， <c:if test="${empty user}"><span class="f_red">游客</span><a href="${path}/logincheck/tologin">请登录</a> | <a href="${path}/logincheck/sigin">免费注册</a></c:if>
             <c:if test="${!empty user}"><c:if test="${!empty level}"><a style="color: #7f2a0c;font-style: italic">${level}</a></c:if>${img} ${user}&nbsp;| <c:if test="${empty Admin}"><a href="${path}/logincheck/toUserIndex" > 个人中心</a></c:if>
                 <c:if test="${!empty Admin}"><a href="${path}/logincheck/siginAdmin">新增管理员</a>&nbsp;| <a href="${path}/logincheck/toAdminIndex" > 个人中心</a></c:if>&nbsp;|
                 <a onclick="logout()" href="#">退出登录</a></c:if>

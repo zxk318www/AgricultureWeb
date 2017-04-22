@@ -81,7 +81,7 @@
 
 <div class="top">
     <div class="topbar">
-        <div class="sz_fr" id="destoon_member">欢迎，<c:if test="${userinfo.level eq 5 }"><a style="color: #7f2a0c;font-style: italic">尊贵的会员用户：</a></c:if>${img} ${userinfo.name} <a>->个人中心</a>|<a onclick="logout()" href="#">退出登录</a></div>
+        <div class="sz_fr" id="destoon_member" style="font-size: 15px">欢迎，<c:if test="${userinfo.level eq 5 }"><a style="color: #7f2a0c;font-style: italic">尊贵的会员用户：</a></c:if>${img} ${userinfo.name} <a>->个人中心</a>|<a onclick="logout()" href="#">退出登录</a></div>
         <div class="m head_s" id="destoon_space"></div>
         <div class="m">
             <div id="search_tips" style="display:none;"></div>
