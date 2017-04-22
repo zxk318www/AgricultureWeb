@@ -60,18 +60,12 @@
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-            <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
+
             <li class="am-dropdown" data-am-dropdown>
                 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="${path}/logincheck/toupdateAdmin">
-                    ${img}<span class="am-icon-users"></span> ${admininfo.name} <span class="am-icon-caret-down"></span>
+                    ${img}&nbsp;&nbsp;${admininfo.name}
                 </a>
-                <ul class="am-dropdown-content">
-                    <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
-                    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-                    <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
-                </ul>
             </li>
-            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
         </ul>
     </div>
 </header>
@@ -165,13 +159,13 @@
             <div class="am-g">
                 <div class="am-u-md-6">
                     <div class="am-panel am-panel-default">
-                        <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">文件上传<span class="am-icon-upload"></span></div>
+                        <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">专家课堂上传视频<span class="am-icon-upload"></span></div>
                         <div class="am-panel-bd am-collapse am-in" id="collapse-panel-1">
-                            上传文件标题：<input id="title" type="text" class="mini-textbox" required="required"><br>
+                            专家课堂标题：<input id="title" type="text" class="mini-textbox" required="required"><br>
                             <p><input type="button" id="vidb1" value="选择视频"></p>
-                            上传文件内容：
+                            专家课堂内容：<a style="font-size: 10px;color: orangered">[注：为了更好上传视频内容，请在课堂内容内勿做换行操作]</a>
                                 <textarea name="article.content2" cols="100" rows="8" style="width:100%;height:200px;visibility:hidden;"></textarea>
-                            <div style="margin-top: 10px"><td colspan="2" ><button style="margin-left: 40%;margin-bottom: 10px;"  onclick="uploads()">上传</button>
+                            <div style="margin-top: 10px"><td colspan="2" ><button style="margin-left: 40%;margin-bottom: 10px;"  onclick="uploads()">推送</button>
                                 <button style="margin-left: 30px;margin-bottom: 10px;"  onclick="cancelUp()">取消</button></td></div>
 
                         </div>
