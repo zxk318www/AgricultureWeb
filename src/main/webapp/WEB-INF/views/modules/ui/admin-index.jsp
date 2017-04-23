@@ -185,6 +185,8 @@
                     <div class="am-panel am-panel-default">
                         <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-1'}">轮播图片上传<span class="am-icon-upload"></span></div>
                         <div class="am-panel-bd am-collapse am-in" id="collapse-panel-2">
+                            <a style="font-size: 10px;color: orangered">[注：为了更好在图片上显示文字信息，请控制字数在15字-20字左右]</a>
+                            <div style="margin-bottom: 10px">轮播图片文字：<input id="yl" type="text" class="mini-textbox" style="width: 500px"><br></div>
                             <textarea name="article.content3" cols="100" rows="8" style="width:100%;height:200px;visibility:hidden;"></textarea>
                             <div style="margin-top: 10px"><td colspan="2" ><button style="margin-left: 40%;margin-bottom: 10px;"  onclick="uploadsImg()">上传</button>
                                 <button style="margin-left: 30px;margin-bottom: 10px;"  onclick="cancelUp()">取消</button></td></div>
@@ -194,6 +196,7 @@
 
                 </div>
 
+                //右侧快捷显示窗口
                 <div class="am-u-md-6">
                     <div class="am-panel am-panel-default">
                         <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-4'}">最新留言显示<span class="am-icon-comment-o" ></span></div>
@@ -719,6 +722,7 @@
     function uploadsImg(){
         var adminid = '${admininfo.uid}';
         var img = editor3.html();
+        var yl = mini.get("yl").getValue();
         if(img == "" || img == null){
             mini.alert("请先选择图片！");
             return;
@@ -726,7 +730,7 @@
         $.ajax({
             url:"${path}/SysnoticeCheck/addSwitchImg",
             type:"post",
-            data:{"img":img,"adminid":adminid},
+            data:{"img":img,"adminid":adminid,"yl":yl},
             async:false,
             scriptCharset: 'utf-8',
             success:function (text) {

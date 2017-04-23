@@ -221,7 +221,7 @@ public class SysnoticeController {
      */
     @RequestMapping(value = "addSwitchImg")
     @ResponseBody
-    public String addSwitchImg(String img,String adminid){
+    public String addSwitchImg(String img,String adminid,String yl){
         Switchimg switchimg = new Switchimg();
         if (StringUtils.isNoneBlank(adminid)){
             Admininfo admininfo = userService.findAdminInfo(adminid);
@@ -232,6 +232,10 @@ public class SysnoticeController {
         if (StringUtils.isNoneBlank(img)){
             switchimg.setImg(img);
         }
+        if (StringUtils.isNoneBlank(yl)){
+            switchimg.setYl(yl);
+        }
+
         switchimg = sysnoticeService.getSwitchImg(switchimg);
         boolean flag = sysnoticeService.saveSwitchImg(switchimg);
         if (flag){

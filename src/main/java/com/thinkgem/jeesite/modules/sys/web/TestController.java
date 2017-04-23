@@ -258,13 +258,16 @@ public class TestController extends BaseController {
             modelMap.put("goods", list2);
         }
         //图片轮播
-        List<String> strs = new ArrayList<String>();
+
         List<Switchimg> list3 = sysnoticeService.getSwitchImgs();
         if (list3!=null && list3.size()>0){
             for (Switchimg switchimg:list3){
-                strs.add(switchimg.getImg());
+                if (StringUtils.isNoneBlank(switchimg.getImg())){
+                    String s1 = switchimg.getImg();
+                }
             }
-            modelMap.put("simgs",strs);
+            modelMap.put("simgs",list3);
+
 
         }
 

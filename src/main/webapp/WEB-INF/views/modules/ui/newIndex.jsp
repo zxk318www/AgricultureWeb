@@ -136,12 +136,33 @@
             <!--轮播 -->
             <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
                 <ul class="am-slides">
+                    <c:if test="${simgs eq null}">
+                        <li class="banner2" ><a style="position: relative;display: block"><img src="${ctxStatic}/img/s1.jpg" style="width: 800px;height: 500px"/>
+                            <b style="position: absolute;left: 0;top: 30%;z-index: 10;padding-left: 80px;width: 100%;overflow: hidden;">
+                                <span style="position: relative;z-index: 1;font-size: 30px">农林交流网——一站式农业交流平台</span>
+                                <div style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;filter: blur(74px);background-color: #6b6b6b;z-index: 0"></div>
+                            </b></a></li>
+                        <li class="banner3" ><a><img src="${ctxStatic}/img/s2.jpg" style="width: 800px;height: 500px"/>
+                            <b style="position: absolute;left: 0;top: 30%;z-index: 10;padding-left: 80px;width: 100%;overflow: hidden;">
+                                <span style="position: relative;z-index: 1;font-size: 30px">推动农林业现代化建设，致力于打造一个属于农林种植户自己的交流平台</span>
+                                <div style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;filter: blur(74px);background-color: #6b6b6b;z-index: 0"></div>
+                            </b>
+                        </a></li>
+                    </c:if>
+                    <c:if test="${simgs ne null}">
                     <c:forEach items="${simgs}" var="simg" varStatus="status">
-                    <li class="banner1" >${simg}</li>
+                    <li class="banner1" >
+                        <a style="position: relative;display: block">${simg.img}
+                        <b style="position: absolute;left: 0;top: 30%;z-index: 10;padding-left: 80px;width: 100%;overflow: hidden;">
+                            <span style="position: relative;z-index: 1;font-size: 30px">${simg.yl}</span>
+                            <div style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;filter: blur(74px);background-color: #6b6b6b;z-index: 0"></div>
+                        </b></a>
+                    </li>
                     <%--<li class="banner2" ><a><img src="${ctxStatic}/img/s1.jpg" style="width: 800px;height: 500px"/></a></li>--%>
                     <%--<li class="banner3" ><a><img src="${ctxStatic}/img/s2.jpg" style="width: 800px;height: 500px"/></a></li>--%>
                     <%--<li class="banner4" ><a><img src="${ctxStatic}/img/s3.jpg" style="width: 800px;height: 500px"/></a></li>--%>
                     </c:forEach>
+                    </c:if>
                 </ul>
 
                 <div class="clear"></div>
