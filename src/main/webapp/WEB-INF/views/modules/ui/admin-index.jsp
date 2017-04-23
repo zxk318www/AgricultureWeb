@@ -196,7 +196,7 @@
 
                 </div>
 
-                //右侧快捷显示窗口
+
                 <div class="am-u-md-6">
                     <div class="am-panel am-panel-default">
                         <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-4'}">最新留言显示<span class="am-icon-comment-o" ></span></div>

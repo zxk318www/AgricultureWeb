@@ -71,8 +71,8 @@
             <li><a href="http://pfsc.agri.cn/pfsc/jgzs/reportHtml.html"><span>资讯</span></a></li>
             <li><a href="${path}/Goodscheck/getGoodsPage?pageIndex=0&pageSize=6"><span>供应</span></a></li>
             <li><a href="${path}/Tiezicheck/toTieziIndex"><span>帖子</span></a></li>
-            <li><a href=""><span>品牌</span></a></li>
-            <li><a href="${path}/Goodscheck/getGoodsPage?pageIndex=0&pageSize=6"><span>商家库</span></a></li>
+            <li><a href="http://pfscnew.agri.gov.cn/scdt/"><span>市场动态</span></a></li>
+            <li><a href="http://jgsb.agri.cn/controller?SERVICE_ID=MARKET_INFO_REPORTS_SEARCH_SERVICE&login_result_sign=nologin"><span>价格报送</span></a></li>
             <li><a href=""><span>展会</span></a></li>
             <li><a href="${path}/classescheck/toclassesIndex"><span>专家课堂</span></a></li>
         </ul>
