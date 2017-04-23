@@ -2,6 +2,9 @@ package com.thinkgem.jeesite.modules.agriculture.entity;
 
 import com.thinkgem.jeesite.common.persistence.BaseEntity;
 
+import java.util.Date;
+
+
 /**
  * Po
  * 
@@ -29,6 +32,11 @@ public class Switchimg extends BaseEntity {
 	 * 预留字段
 	 */
 	private String yl;
+
+	/**
+	 * 上传时间
+	 */
+	private Date postdate;
 
 	/**
 	 * 删除标记
@@ -140,4 +148,12 @@ public class Switchimg extends BaseEntity {
 		this.delFlag = delFlag;
 	}
 
+
+	public Date getPostdate() {
+		return postdate;
+	}
+
+	public void setPostdate(Date postdate) {
+		this.postdate = postdate;
+	}
 }

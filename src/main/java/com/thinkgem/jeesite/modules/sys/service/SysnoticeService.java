@@ -464,7 +464,16 @@ public class SysnoticeService {
     public Switchimg getSwitchImg(Switchimg switchimg){
         //自动生成id
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHmmss");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
+        String datestrs = sdf1.format(date);
+        try {
+            //postDate
+            switchimg.setPostdate(sdf1.parse(datestrs));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String dateStr = sdf.format(date);
         int num = (int) (Math.random()*10000);
         String str = String.valueOf(num);

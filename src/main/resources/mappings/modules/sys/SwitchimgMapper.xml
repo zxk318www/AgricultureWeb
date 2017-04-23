@@ -8,7 +8,8 @@
         SELECT
             t.id AS id, 
             t.img AS img, 
-            t.adminid AS adminid, 
+            t.adminid AS adminid,
+            t.postdate AS postdate,
             t.yl AS yl, 
             t.del_flag AS delFlag
         FROM
@@ -22,7 +23,8 @@
         SELECT
             t.id AS id, 
             t.img AS img, 
-            t.adminid AS adminid, 
+            t.adminid AS adminid,
+            t.postdate As postdate,
             t.yl AS yl, 
             t.del_flag AS delFlag
         FROM
@@ -37,6 +39,9 @@
             </if>
             <if test="adminid != null">
         AND t.adminid = #{adminid}
+            </if>
+            <if test="postdate != null">
+        AND t.postdate = #{postdate}
             </if>
             <if test="yl != null">
         AND t.yl = #{yl}
@@ -67,6 +72,9 @@
             <if test="adminid != null">
         AND adminid = #{adminid}
             </if>
+            <if test="postdate != null">
+        AND postdate = #{postdate}
+            </if>
             <if test="yl != null">
         AND yl = #{yl}
             </if>
@@ -82,7 +90,8 @@
         (
             id, 
             img, 
-            adminid, 
+            adminid,
+            postdate,
             yl, 
             del_flag
         )
@@ -90,7 +99,8 @@
         (
             #{id}, 
             #{img}, 
-            #{adminid}, 
+            #{adminid},
+            #{postdate},
             #{yl}, 
             #{delFlag}
         )
@@ -108,6 +118,9 @@
             </if>
             <if test="adminid != null">
             adminid = #{adminid},
+            </if>
+            <if test="postdate != null">
+            postdate = #{postdate},
             </if>
             <if test="yl != null">
             yl = #{yl},
@@ -127,6 +140,7 @@
             id = #{id},
             img = #{img},
             adminid = #{adminid},
+            postdate = #{postdate},
             yl = #{yl},
             del_flag = #{delFlag}
         </set>
