@@ -837,7 +837,7 @@ public class GoodsController extends BaseController {
         HttpSession session = request.getSession();
         Goods goods = new Goods();
         Userinfo userinfo  = (Userinfo) session.getAttribute("userinfo");
-        if(StringUtils.isNoneBlank(userinfo.getUid())){
+        if(userinfo!=null && StringUtils.isNoneBlank(userinfo.getUid())){
             goods.setUinfoid(userinfo.getUid());
         }
         if(StringUtils.isNoneBlank(rankType)){

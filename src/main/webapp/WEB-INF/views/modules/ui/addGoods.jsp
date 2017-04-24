@@ -293,6 +293,7 @@
             uploadJson : '${ctxStatic}/kindeditor-4.1.7/jsp/upload_json.jsp',
             fileManagerJson : '${ctxStatic}/kindeditor-4.1.7/jsp/file_manager_json.jsp',
             allowImageUpload: true,//允许图片上传
+            imageUploadLimit : 1,//批量上传图片同时上传最多个数
             afterUpload:function(){this.sync();},//图片上传后，内容同步到textarea
             afterBlur:function(){this.sync();} // 失去焦点后，将上传的图片同步到textarea
         });
@@ -339,6 +340,10 @@
         var rankType = mini.get('rankType').getValue();
         if(rankType=="0"){
             mini.alert("请选择商品类型！");
+            return;
+        }
+        if(title==""){
+            mini.alert("请填写商品标题！");
             return;
         }
         var str = null;

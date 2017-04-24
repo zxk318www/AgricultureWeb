@@ -673,6 +673,13 @@ public class TestController extends BaseController {
         }
     }
 
+    /**
+     * 找回密码
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "getPwd")
     @ResponseBody
     public String getPwd(HttpServletRequest request, HttpServletResponse response, Model model){
