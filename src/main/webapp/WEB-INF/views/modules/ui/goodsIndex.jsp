@@ -106,7 +106,7 @@
                     <a style="float: right;margin-right: 30px;margin-top: 15px" class="mini-button" iconCls="icon-user" href="${path}/Goodscheck/tomygoodsIndex">我的商品</a>
                 </c:if>
                 <div style="padding:20px 50px 20px 50px;height: 1000px;">
-                    <h1 style="margin-left: 42%;margin-top: 30px">商品展示中心</h1>
+                    <h1 style="text-align: center;margin-top: 30px">商品展示中心</h1>
                 <div style="background:#FAFAFA;padding:10px 20px 10px 20px;line-height:24px;margin-bottom: 20px"></div >
               <div style="margin-left: 45px;">
                 <c:forEach items="${goods}" var="goods" varStatus="status">

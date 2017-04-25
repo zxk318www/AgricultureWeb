@@ -84,7 +84,7 @@
     <div class="sz_contentbox">
         <div class="sz_bigbox">
             <div style="height: 650px ;background: #dce6f3">
-                <h1 style="margin-left: 45%;margin-top: 50px">个人中心</h1>
+                <h1 style="text-align: center;margin-top: 50px">个人中心</h1>
                 <div style="padding:20px 50px 20px 50px;">
                     <div style="background:#FAFAFA;padding:10px 20px 10px 20px;line-height:24px;"></div >
                     <div style="float: left;margin-left: 130px;margin-top: 30px">

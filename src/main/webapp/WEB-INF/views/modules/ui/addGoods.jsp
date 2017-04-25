@@ -102,7 +102,7 @@
             <div class="left_box">
                 <a style="float: right;margin-right: 72px;margin-top: 15px" href="${path}/logincheck/toUserIndex">返回个人中心</a>
                 <!--标题 -->
-                <h2 style="color: #0B61A4;margin-left: 43%;margin-top: 50px"><c:if test="${operate !=null}">修改商品信息</c:if>
+                <h2 style="color: #0B61A4;text-align: center;margin-top: 50px"><c:if test="${operate !=null}">修改商品信息</c:if>
                     <c:if test="${operate eq null}">新增商品信息</c:if>
                     </h2>
                 <div style="padding:20px 50px 20px 50px;">

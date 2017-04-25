@@ -110,7 +110,7 @@
             <div class="left_box">
                 <c:if test="${userinfo.id ne '11111'}"><a style="float: right;margin-right: 72px;margin-top: 15px" href="${path}/logincheck/toUserIndex">返回个人中心</a></c:if>
                 <div style="padding:20px 50px 20px 50px;height: auto">
-                    <h1 style="margin-left: 32%;margin-top: 30px">购买【${goods.name}】商品</h1>
+                    <h1 style="text-align: center;margin-top: 30px">购买【${goods.name}】商品</h1>
                     <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
                     <div style="background:#FAFAFA;padding:10px 20px 10px 20px;line-height:24px;margin-bottom: 20px"></div >
 

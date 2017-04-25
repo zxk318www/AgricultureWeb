@@ -86,7 +86,7 @@
             <div class="left_box">
                 <c:if test="${admininfo eq null && userinfo.id ne '11111'}"><a style="float: right;margin-right: 72px;margin-top: 15px" href="${path}/logincheck/toUserIndex">返回个人中心</a></c:if>
                 <c:if test="${admininfo ne null }"><a style="float: right;margin-right: 72px;margin-top: 15px" href="${path}/logincheck/toAdminIndex">返回个人中心</a></c:if>
-                <h2 style="color: #0B61A4;margin-left: 45%;margin-top: 50px">帖子中心</h2>
+                <h2 style="color: #0B61A4;text-align: center;margin-top: 50px">帖子中心</h2>
                 <div style="padding:20px 50px 20px 50px;">
                     <div style="background:#FAFAFA;padding:10px 20px 10px 20px;line-height:24px;">
                         <div >
@@ -249,7 +249,7 @@
         </c:if>
     });
 
-    //购物车列表操作
+    //帖子列表操作
     function onActionRenderers(e){
         return '<span class="f_b f_orange"><a href="javascript:show()" style="color: #0b93d9">查看&nbsp;&nbsp;</a></span>'
                 <c:if test="${admininfo ne null }">+'<span class="f_b f_orange"><a href="javascript:edit()" style="color: orangered">编辑&nbsp;&nbsp;</a></span>'</c:if>;

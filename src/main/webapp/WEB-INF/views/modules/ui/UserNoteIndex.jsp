@@ -84,7 +84,7 @@
         <div class="sz_bigbox">
             <div class="left_box">
                 <a style="float: right;margin-right: 72px;margin-top: 15px" href="${path}/logincheck/toUserIndex">返回个人中心</a>
-                <h2 style="color: #0B61A4;margin-left: 45%;margin-top: 50px">个人帖子中心</h2>
+                <h2 style="color: #0B61A4;text-align: center;margin-top: 50px">个人帖子中心</h2>
                 <div style="padding:20px 50px 20px 50px;">
 
                     <div style="background:#FAFAFA;padding:10px 20px 10px 20px;line-height:24px;">
