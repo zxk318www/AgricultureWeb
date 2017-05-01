@@ -162,8 +162,12 @@
                                     </div></li>
                                     <li>
                                         <div style="margin-left: 120px">
-                                            <img id="img1" src="/upload/QR/${goods.id}.png" style="width: 178px;height: 178px">
+                                            <c:if test="${answer eq 0 }"><img id="img1" src="/upload/QR/${goods.id}.png" style="width: 178px;height: 178px"></c:if>
+                                            <c:if test="${answer eq 1 }"><img id="img2" src="/upload/QR/error.png" style="width: 178px;height: 178px"></c:if>
                                         </div>
+                                    </li>
+                                    <li>
+                                        <c:if test="${admininfo ne null }"><a href="javascript:void(0);" onclick="checkQR()">校验二维码</a></c:if>
                                     </li>
                                 </ul>
 
@@ -356,6 +360,12 @@
 
 </div>
 
+<div id="editWindow3" class="mini-window" title="校验结果" style="width:500px;"
+     showModal="true" allowResize="true" allowDrag="true">
+    <div id="QR" class="QR"></div>
+
+</div>
+
 
 </body>
 
@@ -459,11 +469,10 @@
                 type: 'post',
                 scriptCharset: 'utf-8',
                 success :function(text){
-                    if(text !=null ||text !=""){
+                    if(text !=null && text !=""){
                         location.href="${path}/Goodscheck/toBought?id="+text;
                     }
                 }
-
             });
         </c:when>
         <c:otherwise>
@@ -476,7 +485,27 @@
         </c:choose>
     }
 
+    function checkQR(){
+        var editWindow3 = mini.get("editWindow3");
+        editWindow3.show();
+        var id = '${goods.id}';
+        $.ajax({
+            url:"${path}/Goodscheck/checkQR",
+            data:{"goodsid":id},
+            async:false,
+            type:'post',
+            success:function(data){
+                if(data!=null && data !=""){
+                    $("#QR").html(data);
+                }else{
+                    $("#QR").html("数据太大,二维码生成失败！");
+                }
+            }
 
+        });
+
+
+    }
 </script>
 </html>
 

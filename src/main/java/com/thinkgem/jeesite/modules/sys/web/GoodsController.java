@@ -164,8 +164,12 @@ public class GoodsController extends BaseController {
             String imgpath2 = imgpath+goods.getId()+".png";
             ZxingHandler.encode2(goods.toString(),100,100,imgpath2);
             String answer = ZxingHandler.decode2(imgpath2);
-            System.out.println(answer);
-
+            if (StringUtils.isNoneBlank(answer)){
+                System.out.println(answer);
+                modelMap.put("answer",0);
+            }else{
+                modelMap.put("answer",1);
+            }
         }
         return "modules/ui/goodsshow";
     }
@@ -181,6 +185,24 @@ public class GoodsController extends BaseController {
         return "modules/ui/shoppingcarIndex";
     }
 
+    /**
+     * 校验二维码（二维码编码）
+     * @return
+     */
+    @RequestMapping(value = "checkQR")
+    @ResponseBody
+    public String checkQR(String goodsid){
+        if (StringUtils.isNoneBlank(goodsid)){
+            //文件保存目录路径
+            String classpath = this.getClass().getResource("/").getPath().replaceFirst("/", "");
+            String webappRoot = classpath.replaceAll("WEB-INF/classes/", "");
+            String imgpath = webappRoot+"upload/QR/";
+            String imgpath2 = imgpath+goodsid+".png";
+            String img = ZxingHandler.decode2(imgpath2);
+            return img;
+        }
+        return  null;
+    }
     /**
      * 返回个人购物车
      * @param request

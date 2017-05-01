@@ -93,7 +93,7 @@ public class ZxingHandler {
 		// 指定纠错等级
 		hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 		// 指定编码格式
-		hints.put(EncodeHintType.CHARACTER_SET, "GBK");
+		hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
 		try {
 			BitMatrix bitMatrix = new MultiFormatWriter().encode(contents,
 					BarcodeFormat.QR_CODE, width, height, hints);
@@ -124,7 +124,7 @@ public class ZxingHandler {
 			BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
 			Hashtable<DecodeHintType, Object> hints = new Hashtable<DecodeHintType, Object>();
-			hints.put(DecodeHintType.CHARACTER_SET, "GBK");
+			hints.put(DecodeHintType.CHARACTER_SET, "utf-8");
 
 			result = new MultiFormatReader().decode(bitmap, hints);
 			return result.getText();
