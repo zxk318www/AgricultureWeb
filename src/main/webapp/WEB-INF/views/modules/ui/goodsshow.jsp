@@ -138,27 +138,35 @@
                         </div></li>
                         <li style="margin-left: 20px">
                             <div style="border: 1px solid slategrey;width: 800px;height: 180px;float: right;padding: 3px">
-                                <div style="font-size: 20px;margin-left: 40px;">
-                                    <tr ><label ><b>商品编号：</b></label>
-                                        <span class="f_b f_orange" id="id">${goods.id}</span>
-                                    </tr><br>
-                                    <tr ><label ><b>商品名称：</b></label>
-                                        <span class="f_b f_orange" >${goods.name}</span>
-                                    </tr><br>
-                                    <tr ><label ><b>商品类型：</b></label>
-                                        <span class="f_b f_orange" >${goods.typeStr}</span>
-                                    </tr><br>
-                                    <tr ><label ><b>商品价格：</b></label>
+                                <ul class="test_ul">
+                                    <li><div style="font-size: 20px;margin-left: 40px;">
+                                        <tr ><label ><b>商品编号：</b></label>
+                                            <span class="f_b f_orange" id="id">${goods.id}</span>
+                                        </tr><br>
+                                        <tr ><label ><b>商品名称：</b></label>
+                                            <span class="f_b f_orange" >${goods.name}</span>
+                                        </tr><br>
+                                        <tr ><label ><b>商品类型：</b></label>
+                                            <span class="f_b f_orange" >${goods.typeStr}</span>
+                                        </tr><br>
+                                        <tr ><label ><b>商品价格：</b></label>
                                         <span class="f_b f_orange" >${goods.price}&nbsp;<c:if test="${goods.type eq '0' || goods.type eq '1'}">元/斤</c:if>
                                         <c:if test="${goods.type eq '2' }">元/株</c:if><c:if test="${goods.type eq '3' }">个</c:if></span>
-                                    </tr><br>
-                                    <tr ><label ><b>商品状态：</b></label>
-                                        <span class="f_b f_orange" >${goods.stateStr}&nbsp;状态</span>
-                                    </tr><br>
-                                    <tr ><label ><b>商品产地：</b></label>
-                                        <span class="f_b f_orange" >${goods.address}</span>
-                                    </tr><br>
-                                </div>
+                                        </tr><br>
+                                        <tr ><label ><b>商品状态：</b></label>
+                                            <span class="f_b f_orange" >${goods.stateStr}&nbsp;状态</span>
+                                        </tr><br>
+                                        <tr ><label ><b>商品产地：</b></label>
+                                            <span class="f_b f_orange" >${goods.address}</span>
+                                        </tr><br>
+                                    </div></li>
+                                    <li>
+                                        <div style="margin-left: 120px">
+                                            <img id="img1" src="/upload/QR/${goods.id}.png" style="width: 178px;height: 178px">
+                                        </div>
+                                    </li>
+                                </ul>
+
 
                             </div>
                         </li>
@@ -342,6 +350,12 @@
 </div>
 
 
+<div id="editWindow2" class="mini-window" title="扫一扫了解更多" style="width:500px;"
+     showModal="true" allowResize="true" allowDrag="true">
+    <img  src="/upload/QR/${goods.id}.png" style="width: 480px;height: 480px">
+
+</div>
+
 
 </body>
 
@@ -365,6 +379,10 @@
         }
         </c:if>
 
+        $("#img1").click(function(){
+            var editWindow2 = mini.get("editWindow2");
+            editWindow2.show();
+        });
 
     });
     function logout(){

@@ -439,6 +439,7 @@ public class TestController extends BaseController {
                         return  "01";
                     }catch (Exception e){
                         e.printStackTrace();
+                        log.error(e);
                     }
                 }
                 if(admininfo!=null){

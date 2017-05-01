@@ -4,12 +4,14 @@ package com.thinkgem.jeesite.modules.sys.web;
 import com.google.common.collect.Lists;
 import com.thinkgem.jeesite.common.excel.ExportExcel;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.common.utils.ZxingHandler;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.agriculture.entity.*;
 import com.thinkgem.jeesite.modules.sys.service.GoodsService;
 import com.thinkgem.jeesite.modules.sys.service.SysnoticeService;
 import com.thinkgem.jeesite.modules.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -126,7 +128,7 @@ public class GoodsController extends BaseController {
      * @return
      */
     @RequestMapping(value = "toshowgoods")
-    public String toshowGoodsInfo(String id,ModelMap modelMap){
+    public String toshowGoodsInfo(String id, ModelMap modelMap){
         if(StringUtils.isNoneBlank(id)){
             Goods goods = goodsService.findGoodsById(id);
             goods = goodsService.getTypeansState(goods);
@@ -155,6 +157,15 @@ public class GoodsController extends BaseController {
             }
             modelMap.put("goods",goods);
             modelMap.put("goodsuserinfo",userinfo);
+            //文件保存目录路径
+            String classpath = this.getClass().getResource("/").getPath().replaceFirst("/", "");
+            String webappRoot = classpath.replaceAll("WEB-INF/classes/", "");
+            String imgpath = webappRoot+"upload/QR/";
+            String imgpath2 = imgpath+goods.getId()+".png";
+            ZxingHandler.encode2(goods.toString(),100,100,imgpath2);
+            String answer = ZxingHandler.decode2(imgpath2);
+            System.out.println(answer);
+
         }
         return "modules/ui/goodsshow";
     }
