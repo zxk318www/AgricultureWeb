@@ -15,7 +15,7 @@
     <script src="${ctxStatic}/scripts/jquery-1.6.2.min.js" type="text/javascript"></script>
     <script src="${ctxStatic}/scripts/miniui/miniui.js"type="text/javascript"></script>
     <script src="${ctxStatic}/scripts/boot.js"type="text/javascript"></script>
-
+    <script src="${ctxStatic}/js/nl.js"type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="${ctxStatic}/scripts/miniui/themes/bootstrap/skin.css" />
 
     <title>农林交流网</title>
@@ -36,6 +36,12 @@
 
     a.b:hover {
         color: #FF6600;
+    }
+    ul{
+        list-style:none;
+    }
+    .test_ul li{
+        float:left;
     }
 </style>
 
@@ -59,10 +65,22 @@
         <div class="sz_logo">
             <a href="http://www.zlf168.com/"><img src="${ctxStatic}/img/03-21-27-30-1.png" alt="种立方" data-bd-imgshare-binded="1"></a>
         </div>
-        <div class="sz_logo_ad"><img src="${ctxStatic}/img/LOGO_ad.png" alt="种立方" data-bd-imgshare-binded="1"></div>
-        <div style="display:none; float:left;"><img src="${ctxStatic}/img/LOGO_ad.png" alt="种立方" data-bd-imgshare-binded="1"></div>
+        <ul class="test_ul">
+            <li>
+                <div class="sz_logo_ad">
+                    <img src="${ctxStatic}/img/LOGO_ad.png" alt="种立方" data-bd-imgshare-binded="1">
+                </div>
+            </li>
+            <li>
+                <div style="width: 400px;margin-left: 220px;margin-top: 20px">
+                    <marquee><b id="nowDateInfo"></b></marquee>
+                </div>
+            </li>
+        </ul>
+
 
     </div>
+
 </div>
 <div class="sz_menubg">
     <div class="sz_menu">
@@ -552,4 +570,8 @@
             }
         });
     }
+
+    //获取农历信息
+    var nowDateInfo = getNowDate();
+    $("#nowDateInfo").html(nowDateInfo);
 </script>
