@@ -85,9 +85,12 @@
                 </div>
             </li>
             <li>
-                <div style="width: 400px;margin-left: 220px;margin-top: 20px">
+                <div style="width: 250px;margin-left: 80px;margin-top: 20px">
                     <marquee><b id="nowDateInfo"></b></marquee>
                 </div>
+            </li>
+            <li>
+                <div><iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=2&num=3" width="440" height="70" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
             </li>
         </ul>
 
