@@ -149,7 +149,12 @@
                                             <span class="f_b f_orange" >${goods.typeStr}</span>
                                         </tr><br>
                                         <tr ><label ><b>商品价格：</b></label>
-                                            <span class="f_b f_orange" >${goods.price}&nbsp;元/斤</span>
+                                            <span class="f_b f_orange" >
+                                                 ${goods.price}&nbsp;&nbsp;<strong style="color: red;font-style: oblique" >（会员劲爆价<fmt:formatNumber type="number" value="${goods.price * 0.8}" maxFractionDigits="2"/>元）</strong>
+                                            &nbsp;<c:if test="${goods.type eq '0' || goods.type eq '1'}">元/斤</c:if>
+                                        <c:if test="${goods.type eq '2' }">元/株</c:if><c:if test="${goods.type eq '3' }">个</c:if>
+
+                                            </span>
                                         </tr><br>
                                         <tr ><label ><b>商品状态：</b></label>
                                             <span class="f_b f_orange" >${goods.stateStr}&nbsp;状态</span>
@@ -319,7 +324,9 @@
             </tr>
             <tr>
                 <td style="width:120px;">购买的商品单价：</td>
-                <td style="width:150px;">￥${goods.price}元/斤</td>
+                <td style="width:150px;"> <c:if test="${userinfo.level ne '5'}">￥${goods.price}</c:if> <c:if test="${userinfo.level eq '5'}"><strong style="color: red;font-style: oblique" >会员价:￥<fmt:formatNumber type="number" value="${goods.price * 0.8}" maxFractionDigits="2"/>元</strong></c:if>
+                    &nbsp;<c:if test="${goods.type eq '0' || goods.type eq '1'}">元/斤</c:if>
+                    <c:if test="${goods.type eq '2' }">元/株</c:if><c:if test="${goods.type eq '3' }">个</c:if></td>
             </tr>
             <tr>
                 <td style="width:120px;">购买的商品数量：</td>
@@ -506,8 +513,16 @@
 
     function jstotal(){
         var nums = mini.get("nums").getValue();
+
         var price = '${goods.price}';
+
+        <c:if test="${userinfo.level ne '5'}">
         var total = nums*price;
+        </c:if>
+        <c:if test="${userinfo.level eq '5'}">
+        var total = nums*price*0.8;
+        </c:if>
+        total = total.toFixed(2);
         mini.get('total').setValue(total);
     }
 
@@ -535,7 +550,7 @@
                 url:"${path}/Goodscheck/boughtGoods",
                 type:"post",
                 data : {"goodsid":'${goods.id}',"num":num,"uname":uname,"umoblie":umoblie,
-                    "uaddress":uaddress,"state":state,"balance":balance,"uphone":uphone},
+                    "uaddress":uaddress,"state":state,"balance":balance,"uphone":uphone,"total":total},
                 success:function(text){
                     if(text == "ok"){
                         if(state == 0){

@@ -864,7 +864,7 @@ public class TestController extends BaseController {
                 if (sysnotice!=null) {
                     boolean flag = sysnoticeService.saveSysnotice(sysnotice);
                     if (flag) {
-                        return "ok";
+                        return "1";
                     }
                 }
 

@@ -165,8 +165,12 @@
                                             <span class="f_b f_orange" >${goods.typeStr}</span>
                                         </tr><br>
                                         <tr ><label ><b>商品价格：</b></label>
-                                        <span class="f_b f_orange" >${goods.price}&nbsp;<c:if test="${goods.type eq '0' || goods.type eq '1'}">元/斤</c:if>
-                                        <c:if test="${goods.type eq '2' }">元/株</c:if><c:if test="${goods.type eq '3' }">个</c:if></span>
+                                        <span class="f_b f_orange" >
+                                        ${goods.price}&nbsp;&nbsp;<strong style="color: red;font-style: oblique" >（会员劲爆价<fmt:formatNumber type="number" value="${goods.price * 0.8}" maxFractionDigits="2"/>元）</strong>
+                                            &nbsp;<c:if test="${goods.type eq '0' || goods.type eq '1'}">元/斤</c:if>
+                                        <c:if test="${goods.type eq '2' }">元/株</c:if><c:if test="${goods.type eq '3' }">个</c:if>
+
+                                        </span>
                                         </tr><br>
                                         <tr ><label ><b>商品状态：</b></label>
                                             <span class="f_b f_orange" >${goods.stateStr}&nbsp;状态</span>

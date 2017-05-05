@@ -350,7 +350,7 @@
             scriptCharset: 'utf-8',
             data:{"id":id,"adminid":adminid,"rank":rank,"content":content,"balance":balance},
             success:function(text){
-                if(text=="ok"){
+                if(text=="1"){
                     mini.alert("操作成功！");
                     location.reload();
                 }

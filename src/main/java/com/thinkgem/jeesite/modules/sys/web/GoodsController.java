@@ -507,10 +507,10 @@ public class GoodsController extends BaseController {
         String uphone = request.getParameter("uphone");
         String state = request.getParameter("state");
         String balance =request.getParameter("balance");
+        String total = request.getParameter("total");
         Userinfo userinfo  = (Userinfo) session.getAttribute("userinfo");
         Order order = new Order();
         double price = 0;
-        double total=0;
         if(StringUtils.isNoneBlank(uname)){
             order.setUname(uname);
         }else if(StringUtils.isNoneBlank(userinfo.getName())){
@@ -558,10 +558,11 @@ public class GoodsController extends BaseController {
             }
         }
         Order order1 = goodsService.getOrder(order);
-        if(StringUtils.isNoneBlank(num)){
+        if(StringUtils.isNoneBlank(total) && StringUtils.isNoneBlank(num)){
             order1.setNum(Integer.parseInt(num));
-             total = Integer.parseInt(num)*price;
-            order1.setTotal(total);
+//             total = Integer.parseInt(num)*price;
+            double totals = Double.parseDouble(total);
+            order1.setTotal(totals);
         }
         Notice notice = new Notice();
         Notice notice1 = goodsService.getNotice(notice,order1);
