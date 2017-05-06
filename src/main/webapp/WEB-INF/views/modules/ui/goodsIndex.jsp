@@ -123,6 +123,12 @@
                 <div style="padding:20px 50px 20px 50px;height: 1000px;">
                     <h1 style="text-align: center;margin-top: 30px">商品展示中心</h1>
                 <div style="background:#FAFAFA;padding:10px 20px 10px 20px;line-height:24px;margin-bottom: 20px"></div >
+
+                    <input id="rankType" class="mini-combobox" style="width:120px;" textField="typeValue" valueField="typeId"
+                           value="typeId" showNullItem="false" allowInput="false"  valueFromSelect=“true”/>
+                    <input id="goodsname" class="mini-textbox" emptyText="请输入查询内容" style="width:150px;" onenter="onKeyEnter"/>
+                    <a class="mini-button" onclick="search()">查询</a>
+
               <div style="margin-left: 45px;">
                 <c:forEach items="${goods}" var="goods" varStatus="status">
                     <div style="width: 350px;height: auto;float: left;">
@@ -234,6 +240,11 @@
 <script charset="utf-8" type="text/javascript">
     mini.parse();
     $(function(){
+
+        var jsonData = [{'typeId':'-1','typeValue':'请选择商品类型'},{'typeId':'0','typeValue':'水果'},{'typeId':'1','typeValue':'蔬菜'},{'typeId':'2','typeValue':'农林'},{'typeId':'3','typeValue':'其他'}];
+        mini.get('rankType').setData(jsonData);
+        mini.get('rankType').setValue('-1');
+
         <c:if test="${admininfo eq null}">
         var ms = '${userinfo.level}';
         if(ms==null || ms ==""){
@@ -256,12 +267,12 @@
         var pages = '${totalpages}';
         if(pageIndex<=pages && pageIndex >0){
             if(key == "pre"){
-                location.href="${path}/Goodscheck/getGoodsPage?pageIndex="+(pageIndex-1)+"&pageSize="+pageSize;
+                location.href="${path}/Goodscheck/getGoodsPage?pageIndex="+(pageIndex-1)+"&pageSize="+pageSize+"&type="+ '${ranktype}'+"&name="+encodeURI(encodeURI('${name}'));
             }
         }
         if(pageIndex<pages-1 && pageIndex >=0){
             if(key == "next"){
-                location.href="${path}/Goodscheck/getGoodsPage?pageIndex="+(pageIndex+1)+"&pageSize="+pageSize;
+                location.href="${path}/Goodscheck/getGoodsPage?pageIndex="+(pageIndex+1)+"&pageSize="+pageSize+"&type="+ '${ranktype}'+"&name="+encodeURI(encodeURI('${name}'));
             }
         }
 
@@ -317,6 +328,15 @@
     //获取农历信息
     var nowDateInfo = getNowDate();
     $("#nowDateInfo").html(nowDateInfo);
+
+    function search(){
+        var rankType = mini.get('rankType').getValue();
+        var key = mini.get("goodsname").getValue();
+        if(rankType == '-1'){
+            rankType = "";
+        }
+        location.href="${path}/Goodscheck/getGoodsPage?pageIndex=0&pageSize=6&type="+ rankType+"&name="+encodeURI(encodeURI(key));
+    }
 </script>
 </html>
 

@@ -54,7 +54,7 @@ public class GoodsController extends BaseController {
      * @return
      */
     @RequestMapping(value = "getGoodsPage")
-    public String getGoodsPage(String name,String pageIndex,String pageSize,HttpServletRequest request, HttpServletResponse response,ModelMap modelMap) {
+    public String getGoodsPage(String type , String name,String pageIndex,String pageSize,HttpServletRequest request, HttpServletResponse response,ModelMap modelMap) {
         Goods goods = new Goods();
         HttpSession session = request.getSession();
         Userinfo uinfo = (Userinfo) session.getAttribute("userinfo");
@@ -67,6 +67,12 @@ public class GoodsController extends BaseController {
         if(StringUtils.isNoneBlank(pageSize)){
             modelMap.put("pageSize",Integer.parseInt(pageSize));
         }
+        if(StringUtils.isNoneBlank(type)){
+            int a = Integer.parseInt(type);
+          goods.setType(a);
+            modelMap.put("ranktype",a);
+        }
+
         //解决location.href中文参数乱码问题
 
         if (StringUtils.isNoneBlank(name)){
@@ -78,6 +84,7 @@ public class GoodsController extends BaseController {
             if (StringUtils.isNoneBlank(name)){
                 String key = "%"+name+"%";
                 goods.setName(key);
+                modelMap.put("name",key);
             }
         }
         MiniPage ps = new MiniPage(request, response);

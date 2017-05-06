@@ -432,7 +432,10 @@
             var username = mini.get('username').getValue();
             var form = new mini.Form("#sigin-form");
             form.validate();
-            if (form.isValid() == false) return;
+            if (form.isValid() == false){
+                mini.alert("请检查必填项目！");
+                return;
+            }
             var regid = $('input[name=regid]:checked').val();
             var sex = $('input[name=sex]:checked').val();
             var data = form.getData();      //获取表单多个控件的数据

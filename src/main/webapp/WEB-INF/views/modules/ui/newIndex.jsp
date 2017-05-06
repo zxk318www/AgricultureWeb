@@ -88,7 +88,7 @@
             </li>
             <li>
                 <div style="width: 250px;margin-left: 80px;margin-top: 20px">
-                    <marquee><b id="nowDateInfo"></b></marquee>
+                    <marquee direction="left"><b id="nowDateInfo"></b></marquee>
                 </div>
             </li>
             <li>
